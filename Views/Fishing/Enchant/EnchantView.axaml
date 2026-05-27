@@ -1,0 +1,171 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Client.ViewModels"
+             xmlns:controls="using:Client.Controls"
+             x:Class="Client.Views.EnchantView"
+             x:DataType="vm:EnchantViewModel"
+             Background="{StaticResource Background}">
+    <UserControl.Styles>
+        <Style Selector="ComboBox.enchant-select">
+            <Setter Property="Background" Value="{StaticResource Surface}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="RadioButton.enchant-mode">
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto,*"
+          Margin="34,6,34,34">
+        <Border Grid.Row="0"
+                Classes="app-card"
+                Padding="14">
+            <StackPanel Spacing="12">
+                <CheckBox IsChecked="{Binding AutoEnchantEnabled}"
+                          Content="Auto Enchant"
+                          VerticalAlignment="Center"
+                          FontFamily="{StaticResource UIFont}"
+                          FontSize="13"
+                          Foreground="{StaticResource TextPrimary}" />
+
+                <Grid ColumnDefinitions="*,*"
+                      ColumnSpacing="10">
+                    <Border Grid.Column="0"
+                            Classes="app-card"
+                            BorderBrush="{StaticResource Border}"
+                            BorderThickness="1"
+                            Padding="12,8"
+                            Background="{StaticResource Surface}">
+                        <RadioButton Classes="enchant-mode"
+                                     GroupName="EnchantRollMode"
+                                     Content="Gamepass"
+                                     IsChecked="{Binding IsGamepassMode}" />
+                    </Border>
+                    <Border Grid.Column="1"
+                            Classes="app-card"
+                            BorderBrush="{StaticResource Border}"
+                            BorderThickness="1"
+                            Padding="12,8"
+                            Background="{StaticResource Surface}">
+                        <RadioButton Classes="enchant-mode"
+                                     GroupName="EnchantRollMode"
+                                     Content="Normal"
+                                     IsChecked="{Binding IsNormalMode}" />
+                    </Border>
+                </Grid>
+
+                <Grid ColumnDefinitions="*,120"
+                      ColumnSpacing="10">
+                    <StackPanel Grid.Column="0"
+                                Spacing="5">
+                        <TextBlock Text="Target Enchant"
+                                   FontFamily="{StaticResource UIFont}"
+                                   FontSize="12"
+                                   Foreground="{StaticResource TextSecondary}" />
+                        <TextBox Classes="app-input"
+                                 Height="32"
+                                 PlaceholderText="Search"
+                                 Text="{Binding TargetSearchText}" />
+                        <ComboBox Classes="enchant-select"
+                                  Height="38"
+                                  ItemsSource="{Binding TargetEnchants}"
+                                  SelectedItem="{Binding SelectedTargetEnchant}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="vm:EnchantOptionViewModel">
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="{Binding Brush}"
+                                               FontFamily="{StaticResource UIFont}"
+                                               FontSize="13" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                                VerticalAlignment="Bottom"
+                                Spacing="5">
+                        <TextBox Classes="app-input"
+                                 Width="120"
+                                 Height="32"
+                                 PlaceholderText="New"
+                                 Text="{Binding NewEnchantText}" />
+                        <Button Classes="app-primary"
+                                Width="120"
+                                Height="38"
+                                Content="Add"
+                                Command="{Binding AddEnchantCommand}" />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1"
+              Margin="0,8,0,0"
+              ColumnDefinitions="*,*,*"
+              ColumnSpacing="12">
+            <Border Grid.Column="0"
+                    Classes="app-card"
+                    Height="112"
+                    VerticalAlignment="Top"
+                    Padding="18,16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Rod"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondary}" />
+                    <controls:ColoredTextBlock Lines="{Binding EquippedRodLines}"
+                                               TextWrapping="Wrap"
+                                               FontFamily="{StaticResource DisplayFont}"
+                                               FontSize="18"
+                                               FontWeight="SemiBold" />
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1"
+                    Classes="app-card"
+                    Height="112"
+                    VerticalAlignment="Top"
+                    Padding="18,16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Current Enchant"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondary}" />
+                    <controls:ColoredTextBlock Lines="{Binding CurrentEnchantLines}"
+                                               TextWrapping="Wrap"
+                                               FontFamily="{StaticResource DisplayFont}"
+                                               FontSize="18"
+                                               FontWeight="SemiBold" />
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2"
+                    Classes="app-card"
+                    Height="112"
+                    VerticalAlignment="Top"
+                    Padding="18,16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Status"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondary}" />
+                    <controls:ColoredTextBlock Lines="{Binding StatusLines}"
+                                               TextWrapping="Wrap"
+                                               FontFamily="{StaticResource DisplayFont}"
+                                               FontSize="18"
+                                               FontWeight="SemiBold" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

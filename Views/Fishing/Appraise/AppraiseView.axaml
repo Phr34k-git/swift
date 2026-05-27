@@ -1,0 +1,342 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Client.ViewModels"
+             xmlns:controls="using:Client.Controls"
+             x:Class="Client.Views.AppraiseView"
+             x:DataType="vm:AppraiseViewModel"
+             Background="{StaticResource Background}">
+    <UserControl.Styles>
+        <Style Selector="TextBox.appraise-input">
+            <Setter Property="Background" Value="{StaticResource Surface}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="CaretBrush" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style Selector="ToggleButton.appraise-select">
+            <Setter Property="Background" Value="{StaticResource Surface}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="ToggleButton.appraise-select:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource Surface}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Border}"/>
+        </Style>
+        <Style Selector="ToggleButton.appraise-select:checked /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource Surface}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Border}"/>
+        </Style>
+
+        <Style Selector="ToggleButton.appraise-mutation">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Padding" Value="10,6" />
+            <Setter Property="Margin" Value="0,2,0,0" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style Selector="ToggleButton.appraise-mutation /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="CornerRadius" Value="4" />
+        </Style>
+        <Style Selector="ToggleButton.appraise-mutation:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryPressedBackground}" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+        </Style>
+        <Style Selector="ToggleButton.appraise-mutation:checked /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryHoverBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+        </Style>
+        <Style Selector="ToggleButton.appraise-mutation:checked:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryHoverBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+        </Style>
+
+        <Style Selector="Button.appraise-add">
+            <Setter Property="Background" Value="{StaticResource Accent}"/>
+            <Setter Property="Foreground" Value="{StaticResource AccentForeground}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.appraise-add /template/ ContentPresenter">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.12"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.appraise-add:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentHover}"/>
+        </Style>
+        <Style Selector="Button.appraise-add:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentPressed}"/>
+        </Style>
+        
+        <Style Selector="Button.appraise-secondary">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryBackground}"/>
+            <Setter Property="Foreground" Value="{StaticResource ButtonSecondaryForeground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonSecondaryBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.appraise-secondary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryHoverBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonSecondaryHoverBorder}"/>
+            <Setter Property="TextElement.Foreground" Value="{StaticResource ButtonSecondaryForeground}"/>
+        </Style>
+        <Style Selector="Button.appraise-secondary:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryPressedBackground}"/>
+            <Setter Property="TextElement.Foreground" Value="{StaticResource ButtonSecondaryForeground}"/>
+        </Style>
+
+        <Style Selector="Border.appraise-segmented">
+            <Setter Property="Background" Value="{StaticResource Surface}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="2"/>
+        </Style>
+        <Style Selector="RadioButton.appraise-mode">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextSecondary}"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="12,7"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Padding="{TemplateBinding Padding}">
+                        <TextBlock Text="{TemplateBinding Content}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   FontWeight="{TemplateBinding FontWeight}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="RadioButton.appraise-mode:pointerover">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryHoverBackground}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+        </Style>
+        <Style Selector="RadioButton.appraise-mode:checked">
+            <Setter Property="Background" Value="{StaticResource Accent}"/>
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="RadioButton.appraise-mode:checked:pointerover">
+            <Setter Property="Background" Value="{StaticResource AccentHover}"/>
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="CheckBox.appraise-trait">
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Styles>
+
+    <!-- Root Layout: 2 Columns -->
+    <Grid ColumnDefinitions="320, *"
+          Margin="20">
+        
+        <!-- LEFT COLUMN -->
+        <Grid Grid.Column="0" 
+              RowDefinitions="Auto, *"
+              Margin="0,0,16,0">
+            
+            <!-- Top Left: Auto Appraise & Mode -->
+            <Border Classes="app-card" Padding="16">
+                <StackPanel Spacing="14">
+                    <CheckBox IsChecked="{Binding AutoAppraiseEnabled}"
+                              Content="Auto Appraise"
+                              FontFamily="{StaticResource UIFont}"
+                              FontSize="13"
+                              Foreground="{StaticResource TextPrimary}" />
+
+                    <Border Classes="appraise-segmented">
+                        <Grid ColumnDefinitions="*, *"
+                              ColumnSpacing="2">
+                            <RadioButton Grid.Column="0"
+                                         Classes="appraise-mode"
+                                         GroupName="AppraiseRollMode"
+                                         Content="Gamepass"
+                                         IsChecked="{Binding IsGamepassMode}" />
+                            <RadioButton Grid.Column="1"
+                                         Classes="appraise-mode"
+                                         GroupName="AppraiseRollMode"
+                                         Content="Normal"
+                                         IsChecked="{Binding IsNormalMode}" />
+                        </Grid>
+                    </Border>
+
+                    <Grid Height="36">
+                        <Grid IsVisible="{Binding IsGamepassMode}"
+                              ColumnDefinitions="Auto,*,Auto"
+                              ColumnSpacing="8"
+                              VerticalAlignment="Center">
+                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Slow" FontFamily="{StaticResource UIFont}" FontSize="11" Foreground="{StaticResource TextSecondary}" />
+                            <Slider Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Minimum="0"
+                                    Maximum="1"
+                                    Value="{Binding GamepassSpeed}"
+                                    TickFrequency="0.05" />
+                            <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="Fast" FontFamily="{StaticResource UIFont}" FontSize="11" Foreground="{StaticResource TextSecondary}" />
+                        </Grid>
+
+                        <Button Classes="appraise-secondary"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Center"
+                                VerticalAlignment="Stretch"
+                                Content="Use Cursor Position"
+                                IsVisible="{Binding IsNormalMode}"
+                                Command="{Binding UseCursorPositionCommand}" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Bottom Left: Traits (Stretches to match right side) -->
+            <Border Classes="app-card" Padding="16" Grid.Row="1" Margin="0,12,0,0">
+                <StackPanel Spacing="10" VerticalAlignment="Top">
+                    <TextBlock Text="Required Traits"
+                               FontFamily="{StaticResource UIFont}" FontSize="12" FontWeight="SemiBold"
+                               Foreground="{StaticResource TextSecondary}" />
+                    
+                    <!-- UniformGrid forces perfect 3x2 alignment -->
+                    <UniformGrid Columns="3">
+                        <CheckBox Classes="appraise-trait" IsChecked="{Binding RequireShiny}" Margin="0,0,0,8">
+                            <TextBlock Text="Shiny" Foreground="{Binding ShinyBrush}" />
+                        </CheckBox>
+                        <CheckBox Classes="appraise-trait" IsChecked="{Binding RequireSparkling}" Margin="0,0,0,8">
+                            <TextBlock Text="Sparkling" Foreground="{Binding SparklingBrush}" />
+                        </CheckBox>
+                        <CheckBox Classes="appraise-trait" IsChecked="{Binding RequireTiny}" Margin="0,0,0,8">
+                            <TextBlock Text="Tiny" Foreground="{Binding TinyBrush}" />
+                        </CheckBox>
+                        <CheckBox Classes="appraise-trait" IsChecked="{Binding RequireSmall}">
+                            <TextBlock Text="Small" Foreground="{Binding SmallBrush}" />
+                        </CheckBox>
+                        <CheckBox Classes="appraise-trait" IsChecked="{Binding RequireBig}">
+                            <TextBlock Text="Big" Foreground="{Binding BigBrush}" />
+                        </CheckBox>
+                        <CheckBox Classes="appraise-trait" IsChecked="{Binding RequireGiant}">
+                            <TextBlock Text="Giant" Foreground="{Binding GiantBrush}" />
+                        </CheckBox>
+                    </UniformGrid>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- RIGHT COLUMN -->
+        <Grid Grid.Column="1" 
+              RowDefinitions="Auto, *">
+            
+            <!-- Top Right: Mutations -->
+            <Border Classes="app-card" Padding="16">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Base Mutations"
+                               FontFamily="{StaticResource UIFont}" FontSize="12" FontWeight="SemiBold"
+                               Foreground="{StaticResource TextSecondary}" />
+                    
+                    <!-- Search -->
+                    <TextBox Classes="appraise-input"
+                             PlaceholderText="Search mutations..."
+                             Text="{Binding MutationSearchText}" />
+
+                    <!-- Dropdown Toggle -->
+                    <Panel>
+                        <ToggleButton x:Name="MutationDropdownToggle" Classes="appraise-select">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <TextBlock Grid.Column="0" Text="{Binding SelectedMutationsSummary}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" FontFamily="{StaticResource UIFont}" FontSize="13" Foreground="{StaticResource TextPrimary}" />
+                                <Path Grid.Column="1" Margin="8,0,0,0" VerticalAlignment="Center" Width="10" Height="6" Stretch="Fill" Fill="{StaticResource TextSecondary}" Data="M 0 0 L 5 6 L 10 0 Z" />
+                            </Grid>
+                        </ToggleButton>
+                        <Popup IsOpen="{Binding #MutationDropdownToggle.IsChecked, Mode=TwoWay}" PlacementTarget="{Binding #MutationDropdownToggle}" Placement="BottomEdgeAlignedLeft" IsLightDismissEnabled="True">
+                            <Border Background="{StaticResource Surface}" BorderBrush="{StaticResource Border}" BorderThickness="1" CornerRadius="6" Padding="4" MinWidth="{Binding #MutationDropdownToggle.Bounds.Width}" Margin="0,4,0,0">
+                                <ScrollViewer MaxHeight="220" VerticalScrollBarVisibility="Auto">
+                                    <ItemsControl ItemsSource="{Binding Mutations}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:AppraiseMutationOptionViewModel">
+                                                <ToggleButton Classes="appraise-mutation" IsChecked="{Binding IsSelected}">
+                                                    <Grid ColumnDefinitions="*,Auto">
+                                                        <TextBlock Grid.Column="0" Text="{Binding Name}" Foreground="{Binding Brush}" FontFamily="{StaticResource UIFont}" FontSize="13" TextTrimming="CharacterEllipsis" />
+                                                        <TextBlock Grid.Column="1" Text="{Binding MultiText}" Margin="10,0,0,0" Foreground="{StaticResource TextSecondary}" FontFamily="{StaticResource MonoFont}" FontSize="12" HorizontalAlignment="Right" />
+                                                    </Grid>
+                                                </ToggleButton>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                    </Panel>
+
+                    <!-- Custom Mutation Add (Clear separation from search/dropdown) -->
+                    <Border BorderBrush="{StaticResource Border}" BorderThickness="0,1,0,0" Padding="0,12,0,0" Margin="0,4,0,0">
+                        <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+                            <TextBox Classes="appraise-input" Grid.Column="0" PlaceholderText="Add custom mutation..." Text="{Binding NewMutationText}" />
+                            <Button Classes="appraise-add" Grid.Column="1" Content="Add" Width="80" Command="{Binding AddMutationCommand}" />
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Bottom Right: Results (Stretches to match left side) -->
+            <Border Classes="app-card" Padding="16" Grid.Row="1" Margin="0,12,0,0">
+                <!-- Centralized Separator using 3-column grid -->
+                <Grid ColumnDefinitions="*, Auto, *">
+                    <StackPanel Grid.Column="0" Spacing="8" Margin="0,0,20,0">
+                        <TextBlock Text="Held Fish" FontFamily="{StaticResource UIFont}" FontSize="12" Foreground="{StaticResource TextSecondary}" />
+                        <controls:ColoredTextBlock Lines="{Binding HeldFishLines}" TextWrapping="Wrap" FontFamily="{StaticResource DisplayFont}" FontSize="18" FontWeight="SemiBold" />
+                    </StackPanel>
+
+                    <Border Grid.Column="1" Width="1" Background="{StaticResource Border}" Margin="0,4,0,4" />
+
+                    <StackPanel Grid.Column="2" Spacing="8" Margin="20,0,0,0">
+                        <TextBlock Text="Status" FontFamily="{StaticResource UIFont}" FontSize="12" Foreground="{StaticResource TextSecondary}" />
+                        <controls:ColoredTextBlock Lines="{Binding StatusLines}" TextWrapping="Wrap" FontFamily="{StaticResource DisplayFont}" FontSize="18" FontWeight="SemiBold" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

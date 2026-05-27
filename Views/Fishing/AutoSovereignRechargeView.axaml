@@ -1,0 +1,62 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Client.ViewModels"
+             x:Class="Client.Views.AutoSovereignRechargeView"
+             x:DataType="vm:AutoSovereignRechargeViewModel"
+             Background="{StaticResource Background}">
+    <Grid Margin="34,0,34,34"
+          RowDefinitions="Auto,*">
+        <Border Grid.Row="0"
+                Classes="app-card"
+                Padding="14">
+            <StackPanel Orientation="Horizontal"
+                        Spacing="10">
+                <StackPanel Width="180"
+                            Spacing="5">
+                    <TextBlock Text="Min %"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondary}" />
+                    <TextBox Classes="app-input"
+                             HorizontalAlignment="Left"
+                             Width="170"
+                             Height="34"
+                             Text="{Binding MinimumPercentText}" />
+                </StackPanel>
+                <StackPanel Width="180"
+                            Spacing="5">
+                    <TextBlock Text="Max %"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondary}" />
+                    <TextBox Classes="app-input"
+                             HorizontalAlignment="Left"
+                             Width="170"
+                             Height="34"
+                             Text="{Binding MaximumPercentText}" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1"
+                Classes="app-card"
+                Margin="0,8,0,0"
+                Height="112"
+                VerticalAlignment="Top"
+                Padding="18,16"
+                >
+            <StackPanel Spacing="8">
+                <TextBlock Text="Status"
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="12"
+                           Foreground="{StaticResource TextSecondary}" />
+                <TextBlock Text="{Binding StatusText}"
+                           TextWrapping="Wrap"
+                           FontFamily="{StaticResource DisplayFont}"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

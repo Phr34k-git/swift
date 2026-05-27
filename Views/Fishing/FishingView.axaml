@@ -1,0 +1,231 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Client.ViewModels"
+             xmlns:controls="using:Client.Controls"
+             x:Class="Client.Views.FishingView"
+             x:DataType="vm:FishingViewModel"
+             Background="{StaticResource Background}">
+    <UserControl.Styles>
+        <Style Selector="Button.fish-primary">
+            <Setter Property="Background" Value="{StaticResource Accent}"/>
+            <Setter Property="Foreground" Value="{StaticResource AccentForeground}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.fish-primary /template/ ContentPresenter">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.12"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.fish-primary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentHover}"/>
+        </Style>
+        <Style Selector="Button.fish-primary:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentPressed}"/>
+        </Style>
+        <Style Selector="Button.fish-secondary">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryBackground}"/>
+            <Setter Property="Foreground" Value="{StaticResource ButtonSecondaryForeground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonSecondaryBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.fish-secondary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryHoverBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonSecondaryHoverBorder}"/>
+            <Setter Property="TextElement.Foreground" Value="{StaticResource ButtonSecondaryForeground}"/>
+        </Style>
+        <Style Selector="Button.fish-secondary:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryPressedBackground}"/>
+            <Setter Property="TextElement.Foreground" Value="{StaticResource ButtonSecondaryForeground}"/>
+        </Style>
+        <Style Selector="ComboBox.fish-select">
+            <Setter Property="Background" Value="{StaticResource Surface}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="12,0"/>
+        </Style>
+        <Style Selector="ComboBox.fish-select:pointerover">
+            <Setter Property="Background" Value="{StaticResource InputHoverSurface}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource InputHoverBorder}"/>
+        </Style>
+        <Style Selector="ComboBox.fish-select:pointerover /template/ Border">
+            <Setter Property="Background" Value="{StaticResource InputHoverSurface}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource InputHoverBorder}"/>
+        </Style>
+        <Style Selector="TextBox.fish-input">
+            <Setter Property="Background" Value="{StaticResource Surface}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="CaretBrush" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="Button.fish-nav">
+            <Setter Property="Background" Value="{StaticResource TableSurface}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Padding" Value="14,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Name="NavRoot"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="Path.fish-nav-arrow">
+            <Setter Property="Stroke" Value="{StaticResource TextSecondary}"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Stroke" Duration="0:0:0.12"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.fish-nav:pointerover Path.fish-nav-arrow">
+            <Setter Property="Stroke" Value="{StaticResource TextPrimary}"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*"
+          Margin="34">
+        <Grid Grid.Row="0"
+              VerticalAlignment="Top">
+            <TextBlock Text="Fishing"
+                       FontFamily="{StaticResource DisplayFont}"
+                       FontSize="24"
+                       FontWeight="SemiBold"
+                       Foreground="{StaticResource TextPrimary}" />
+        </Grid>
+
+        <Grid Grid.Row="1"
+              HorizontalAlignment="Left"
+              Margin="0,22,0,0"
+              ColumnDefinitions="430">
+            <Grid Grid.Column="0"
+                  RowDefinitions="Auto,12,Auto"
+                  ColumnDefinitions="*,Auto">
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Text="Tracking Method"
+                           VerticalAlignment="Center"
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}" />
+                <ComboBox Grid.Row="0"
+                          Grid.Column="1"
+                          Classes="fish-select"
+                          Width="180"
+                          Height="38"
+                          ItemsSource="{Binding TrackerOptions}"
+                          SelectedItem="{Binding SelectedTracker}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:FishingTrackerOption">
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="6">
+                                <TextBlock Text="{Binding Title}"
+                                           Foreground="{StaticResource TextPrimary}" />
+                                <TextBlock Text="{Binding Description}"
+                                           Foreground="{StaticResource TextSecondary}"
+                                           Margin="{Binding DescriptionMargin}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                    <ComboBox.SelectionBoxItemTemplate>
+                        <DataTemplate x:DataType="vm:FishingTrackerOption">
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="6">
+                                <TextBlock Text="{Binding Title}"
+                                           Foreground="{StaticResource TextPrimary}" />
+                                <TextBlock Text="{Binding Description}"
+                                           Foreground="{StaticResource TextSecondary}"
+                                           Margin="{Binding DescriptionMargin}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.SelectionBoxItemTemplate>
+                </ComboBox>
+
+                <TextBlock Grid.Row="2"
+                           Grid.Column="0"
+                           Text="Casting"
+                           VerticalAlignment="Center"
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}" />
+                <ComboBox Grid.Row="2"
+                          Grid.Column="1"
+                          Classes="fish-select"
+                          Width="180"
+                          Height="38"
+                          ItemsSource="{Binding CastingModes}"
+                          SelectedItem="{Binding SelectedCastingMode}" />
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="3"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top"
+              Margin="0,16,0,0"
+              ColumnDefinitions="430,12,220">
+            <controls:AppKeyValueList Grid.Column="0"
+                                      Width="430"
+                                      Items="{Binding StatusItems}" />
+            <controls:AppKeyValueList Grid.Column="2"
+                                      Width="220"
+                                      Items="{Binding StatsItems}" />
+        </Grid>
+
+        <Grid Grid.Row="4"
+              IsVisible="{Binding IsMasterlineEquipped}"
+              Margin="0,4,0,0"
+              HorizontalAlignment="Left"
+              Width="662"
+              ColumnDefinitions="Auto,12,*">
+            <TextBlock Grid.Column="0"
+                       Text="Masterline Rods"
+                       VerticalAlignment="Center"
+                       FontFamily="{StaticResource UIFont}"
+                       FontSize="13"
+                       FontWeight="SemiBold"
+                       Foreground="{StaticResource TextSecondary}" />
+            <TextBlock Grid.Column="2"
+                       Text="{Binding MasterlineRodNamesText}"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap"
+                       FontFamily="{StaticResource UIFont}"
+                       FontSize="13"
+                       FontWeight="SemiBold"
+                       Foreground="{StaticResource TextPrimary}" />
+        </Grid>
+    </Grid>
+</UserControl>

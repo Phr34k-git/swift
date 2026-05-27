@@ -1,0 +1,180 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Client.ViewModels"
+             xmlns:controls="using:Client.Controls"
+             x:Class="Client.Views.AutoTotemView"
+             x:DataType="vm:AutoTotemViewModel"
+             Background="{StaticResource Background}">
+    <UserControl.Styles>
+        <Style Selector="TextBlock.section-label">
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="{StaticResource TextSecondary}"/>
+        </Style>
+        <Style Selector="CheckBox.totem-check">
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+        </Style>
+        <Style Selector="TextBlock.totem-inline">
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto,*"
+          Margin="34,0,34,34">
+        <Border Grid.Row="0"
+                Classes="app-card"
+                Padding="14">
+            <StackPanel Spacing="10">
+            <StackPanel Spacing="5">
+                <TextBlock Classes="section-label" Text="Totem" />
+                <ComboBox Classes="app-select"
+                          Width="213"
+                          Height="38"
+                          ItemsSource="{Binding TotemOptions}"
+                          SelectedItem="{Binding SelectedTotem}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:TotemOptionViewModel">
+                            <StackPanel Orientation="Horizontal" Spacing="0">
+                                <TextBlock Text="{Binding DisplayPrimary}"
+                                           Foreground="{Binding Brush}" />
+                                <TextBlock Text="{Binding DisplaySuffix}"
+                                           Foreground="{StaticResource TextPrimary}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                    <ComboBox.SelectionBoxItemTemplate>
+                        <DataTemplate x:DataType="vm:TotemOptionViewModel">
+                            <StackPanel Orientation="Horizontal" Spacing="0">
+                                <TextBlock Text="{Binding DisplayPrimary}"
+                                           Foreground="{Binding Brush}" />
+                                <TextBlock Text="{Binding DisplaySuffix}"
+                                           Foreground="{StaticResource TextPrimary}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.SelectionBoxItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Spacing="5">
+                <TextBlock Classes="section-label" Text="Shiny / Sparkling / Mutation" />
+                <Grid ColumnDefinitions="*,*,*"
+                      ColumnSpacing="10">
+                    <Border Grid.Column="0"
+                            Classes="app-card"
+                            Padding="12,10">
+                        <CheckBox Classes="totem-check"
+                                  IsChecked="{Binding UseShinyTotem}">
+                            <CheckBox.Content>
+                                <StackPanel Orientation="Horizontal" Spacing="0">
+                                    <TextBlock Text="Use "
+                                               Classes="totem-inline" />
+                                    <TextBlock Text="Shiny"
+                                               Classes="totem-inline"
+                                               Foreground="#FFF5B4" />
+                                    <TextBlock Text=" Totem"
+                                               Classes="totem-inline" />
+                                </StackPanel>
+                            </CheckBox.Content>
+                        </CheckBox>
+                    </Border>
+                    <Border Grid.Column="1"
+                            Classes="app-card"
+                            Padding="12,10">
+                        <CheckBox Classes="totem-check"
+                                  IsChecked="{Binding UseSparklingTotem}">
+                            <CheckBox.Content>
+                                <StackPanel Orientation="Horizontal" Spacing="0">
+                                    <TextBlock Text="Use "
+                                               Classes="totem-inline" />
+                                    <TextBlock Text="Sparkling"
+                                               Classes="totem-inline"
+                                               Foreground="#FFF0AA" />
+                                    <TextBlock Text=" Totem"
+                                               Classes="totem-inline" />
+                                </StackPanel>
+                            </CheckBox.Content>
+                        </CheckBox>
+                    </Border>
+                    <Border Grid.Column="2"
+                            Classes="app-card"
+                            Padding="12,10">
+                        <CheckBox Classes="totem-check"
+                                  IsChecked="{Binding UseMutationTotem}">
+                            <CheckBox.Content>
+                                <StackPanel Orientation="Horizontal" Spacing="0">
+                                    <TextBlock Text="Use "
+                                               Classes="totem-inline" />
+                                    <TextBlock Text="Mutation"
+                                               Classes="totem-inline"
+                                               Foreground="#78FF78" />
+                                    <TextBlock Text=" Totem"
+                                               Classes="totem-inline" />
+                                </StackPanel>
+                            </CheckBox.Content>
+                        </CheckBox>
+                    </Border>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Spacing="5">
+                <Grid ColumnDefinitions="Auto,*"
+                      ColumnSpacing="8">
+                    <TextBlock Grid.Column="0"
+                               Classes="section-label"
+                               Text="Cycle Lock" />
+                    <TextBlock Grid.Column="1"
+                               IsVisible="{Binding !IsTimePreferenceEditable}"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="11"
+                               Foreground="{StaticResource TextSecondary}"
+                               Text="Locked by Totem" />
+                </Grid>
+                <Grid ColumnDefinitions="*,*,*"
+                      ColumnSpacing="10">
+                    <Border Grid.Column="0"
+                            Classes="app-card"
+                            Padding="12,10">
+                        <CheckBox Classes="totem-check"
+                                  Content="Stay Day"
+                                  IsEnabled="{Binding IsTimePreferenceEditable}"
+                                  IsChecked="{Binding StayDay}" />
+                    </Border>
+                    <Border Grid.Column="1"
+                            Classes="app-card"
+                            Padding="12,10">
+                        <CheckBox Classes="totem-check"
+                                  Content="Stay Night"
+                                  IsEnabled="{Binding IsTimePreferenceEditable}"
+                                  IsChecked="{Binding StayNight}" />
+                    </Border>
+                </Grid>
+            </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1"
+              Margin="0,8,0,0"
+              ColumnDefinitions="*">
+            <Border Classes="app-card"
+                    Height="122"
+                    VerticalAlignment="Top"
+                    Padding="18,16"
+                    >
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Status"
+                               Classes="section-label" />
+                    <controls:ColoredTextBlock Lines="{Binding StatusLines}"
+                                               TextWrapping="Wrap"
+                                               FontFamily="{StaticResource DisplayFont}"
+                                               FontSize="20"
+                                               FontWeight="SemiBold" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

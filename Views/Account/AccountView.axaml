@@ -1,0 +1,442 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:spinners="using:AvaloniaSpinners"
+             xmlns:vm="using:Client.ViewModels"
+             x:Class="Client.Views.AccountView"
+             x:DataType="vm:AccountViewModel"
+             Background="{StaticResource Background}">
+    <UserControl.Styles>
+        <Style Selector="TextBox.account-input">
+            <Setter Property="Width" Value="340" />
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Background" Value="{StaticResource Surface}" />
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+            <Setter Property="CaretBrush" Value="{StaticResource TextPrimary}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="Padding" Value="10,0" />
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style Selector="TextBox.account-input:focus /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="{StaticResource InputFocusSurface}" />
+            <Setter Property="BorderBrush" Value="{StaticResource InputFocusBorder}" />
+        </Style>
+
+        <Style Selector="Button.account-primary">
+            <Setter Property="Height" Value="34" />
+            <Setter Property="MinWidth" Value="92" />
+            <Setter Property="Padding" Value="18,0" />
+            <Setter Property="Background" Value="{StaticResource Accent}" />
+            <Setter Property="Foreground" Value="{StaticResource AccentForeground}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+
+        <Style Selector="Button.account-primary /template/ ContentPresenter">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.12" />
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.account-primary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentHover}" />
+        </Style>
+
+        <Style Selector="Button.account-primary:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentPressed}" />
+        </Style>
+
+        <Style Selector="Button.account-secondary">
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Padding" Value="16,0" />
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryBackground}" />
+            <Setter Property="Foreground" Value="{StaticResource ButtonSecondaryForeground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonSecondaryBorder}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+
+        <Style Selector="Button.account-secondary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryHoverBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonSecondaryHoverBorder}" />
+            <Setter Property="TextElement.Foreground" Value="{StaticResource ButtonSecondaryForeground}" />
+        </Style>
+
+        <Style Selector="Button.account-secondary:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryPressedBackground}" />
+            <Setter Property="TextElement.Foreground" Value="{StaticResource ButtonSecondaryForeground}" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid>
+        <Grid Width="660"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top"
+              Margin="40,28,0,0"
+              RowDefinitions="48,Auto,116,104,262">
+            <TextBlock Text="Account"
+                       FontFamily="{StaticResource DisplayFont}"
+                       FontSize="24"
+                       FontWeight="SemiBold"
+                       Foreground="{StaticResource TextPrimary}" />
+
+            <Grid Grid.Row="1"
+                  ColumnDefinitions="*,8,Auto"
+                  Margin="0,0,0,12"
+                  IsVisible="{Binding IsLoadErrorVisible}">
+                <TextBlock Grid.Column="0"
+                           Text="{Binding LoadErrorMessage}"
+                           VerticalAlignment="Center"
+                           MaxWidth="520"
+                           TextWrapping="Wrap"
+                           LineHeight="18"
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="12"
+                           Foreground="{StaticResource Error}" />
+                <Button Grid.Column="2"
+                        Classes="account-secondary"
+                        Content="Retry"
+                        Command="{Binding RetryLoadCommand}" />
+            </Grid>
+
+            <Grid Grid.Row="2"
+                  RowDefinitions="22,1,*">
+                <TextBlock Text="Profile"
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="13"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}" />
+                <Rectangle Grid.Row="1"
+                           Height="1"
+                           Fill="{StaticResource Border}" />
+
+                <Grid Grid.Row="2"
+                      ColumnDefinitions="34,14,*"
+                      Margin="0,16,0,0"
+                      VerticalAlignment="Top"
+                      IsVisible="{Binding IsProfileContentVisible}">
+                    <Border Grid.Column="0"
+                            Width="34"
+                            Height="34"
+                            Background="#253130"
+                            CornerRadius="17"
+                            ClipToBounds="True">
+                        <Panel>
+                            <TextBlock Text="{Binding AvatarInitials}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource UIFont}"
+                                       FontSize="11"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource TextPrimary}"
+                                       IsVisible="{Binding !HasAvatar}" />
+                            <Image Source="{Binding AvatarImage}"
+                                   Stretch="UniformToFill"
+                                   IsVisible="{Binding HasAvatar}" />
+                        </Panel>
+                    </Border>
+
+                    <StackPanel Grid.Column="2"
+                                VerticalAlignment="Center"
+                                Spacing="2">
+                        <TextBlock Text="{Binding DisplayName}"
+                                   FontFamily="{StaticResource UIFont}"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimary}" />
+                        <TextBlock Text="{Binding DisplayUsername}"
+                                   FontFamily="{StaticResource UIFont}"
+                                   FontSize="12"
+                                   Foreground="{StaticResource TextSecondary}" />
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="2"
+                      ColumnDefinitions="34,14,*"
+                      Margin="0,16,0,0"
+                      VerticalAlignment="Top"
+                      IsVisible="{Binding ShowProfileSkeleton}">
+                    <Border Grid.Column="0"
+                            Width="34"
+                            Height="34"
+                            Background="{StaticResource Surface}"
+                            CornerRadius="17" />
+                    <StackPanel Grid.Column="2"
+                                VerticalAlignment="Center"
+                                Spacing="6">
+                        <Border Width="140"
+                                Height="10"
+                                HorizontalAlignment="Left"
+                                Background="{StaticResource Surface}" />
+                        <Border Width="96"
+                                Height="10"
+                                HorizontalAlignment="Left"
+                                Background="{StaticResource Surface}" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="3"
+                  RowDefinitions="22,1,42,24">
+                <TextBlock Text="Username"
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="13"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}" />
+                <Rectangle Grid.Row="1"
+                           Height="1"
+                           Fill="{StaticResource Border}" />
+
+                <Grid Grid.Row="2"
+                      ColumnDefinitions="130,340,8,Auto"
+                      Margin="0,14,0,0">
+                    <TextBlock Grid.Column="0"
+                               Text="Username"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondary}" />
+                    <TextBox Grid.Column="1"
+                             Classes="account-input"
+                             Text="{Binding Username}" />
+                    <Button Grid.Column="3"
+                            Classes="account-primary"
+                            Width="92"
+                            Command="{Binding SaveUsernameCommand}"
+                            IsHitTestVisible="{Binding IsUsernameSaveTextVisible}">
+                        <Grid Width="56"
+                              Height="16">
+                            <TextBlock Text="{Binding UsernameSaveButtonText}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource UIFont}"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource AccentForeground}"
+                                       IsVisible="{Binding IsUsernameSaveTextVisible}" />
+                            <spinners:MirageSpinner Size="44"
+                                                    Color="#1A2B2E"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    IsVisible="{Binding IsSavingUsername}" />
+                        </Grid>
+                    </Button>
+                </Grid>
+
+                <Grid Grid.Row="3"
+                      ColumnDefinitions="130,*">
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding UsernameErrorMessage}"
+                               Margin="0,4,0,0"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource Error}"
+                               IsVisible="{Binding IsUsernameErrorVisible}" />
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="4"
+                  RowDefinitions="22,1,*">
+                <TextBlock Text="Password"
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="13"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}" />
+                <Rectangle Grid.Row="1"
+                           Height="1"
+                           Fill="{StaticResource Border}" />
+
+                <Grid Grid.Row="2"
+                      ColumnDefinitions="130,340,8,Auto"
+                      Margin="0,17,0,0"
+                      VerticalAlignment="Top"
+                      IsVisible="{Binding !IsPasswordEditorVisible}">
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding PasswordStateText}"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="13"
+                               Foreground="{StaticResource TextSecondary}" />
+                    <Button Grid.Column="3"
+                            Classes="account-secondary"
+                            Content="{Binding PasswordEditorButtonText}"
+                            Command="{Binding ShowPasswordEditorCommand}" />
+                </Grid>
+
+                <Grid Grid.Row="2"
+                      RowDefinitions="42,42,24,34"
+                      ColumnDefinitions="130,340,*"
+                      Margin="0,17,0,0"
+                      IsVisible="{Binding IsSetPasswordEditorVisible}">
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="New password"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondary}" />
+                    <TextBox Grid.Row="0"
+                             Grid.Column="1"
+                             Classes="account-input"
+                             PasswordChar="*"
+                             Text="{Binding NewPassword}" />
+
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               Text="Confirm password"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondary}" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="1"
+                             Classes="account-input"
+                             PasswordChar="*"
+                             Text="{Binding ConfirmPassword}" />
+
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="1"
+                               Text="{Binding PasswordErrorMessage}"
+                               Margin="0,4,0,0"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource Error}"
+                               IsVisible="{Binding IsPasswordErrorVisible}" />
+
+                    <StackPanel Grid.Row="3"
+                                Grid.Column="1"
+                                Orientation="Horizontal"
+                                Spacing="8">
+                        <Button Classes="account-primary"
+                                Width="150"
+                                Command="{Binding SavePasswordCommand}"
+                                IsHitTestVisible="{Binding IsPasswordSaveTextVisible}">
+                            <Grid
+                                  Height="16">
+                                <TextBlock Text="{Binding PasswordSubmitButtonText}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontFamily="{StaticResource UIFont}"
+                                           FontSize="13"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource AccentForeground}"
+                                           IsVisible="{Binding IsPasswordSaveTextVisible}" />
+                                <spinners:MirageSpinner Size="44"
+                                                        Color="#1A2B2E"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        IsVisible="{Binding IsSavingPassword}" />
+                            </Grid>
+                        </Button>
+                        <Button Classes="account-secondary"
+                                Content="Cancel"
+                                Command="{Binding CancelPasswordEditorCommand}" />
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="2"
+                      RowDefinitions="42,42,42,24,34"
+                      ColumnDefinitions="130,340,*"
+                      Margin="0,17,0,0"
+                      IsVisible="{Binding IsChangePasswordEditorVisible}">
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="Current password"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondary}" />
+                    <TextBox Grid.Row="0"
+                             Grid.Column="1"
+                             Classes="account-input"
+                             PasswordChar="*"
+                             Text="{Binding CurrentPassword}" />
+
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               Text="New password"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondary}" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="1"
+                             Classes="account-input"
+                             PasswordChar="*"
+                             Text="{Binding NewPassword}" />
+
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               Text="Confirm new password"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondary}" />
+                    <TextBox Grid.Row="2"
+                             Grid.Column="1"
+                             Classes="account-input"
+                             PasswordChar="*"
+                             Text="{Binding ConfirmPassword}" />
+
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="1"
+                               Text="{Binding PasswordErrorMessage}"
+                               Margin="0,4,0,0"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource Error}"
+                               IsVisible="{Binding IsPasswordErrorVisible}" />
+
+                    <StackPanel Grid.Row="4"
+                                Grid.Column="1"
+                                Orientation="Horizontal"
+                                Spacing="8">
+                        <Button Classes="account-primary"
+                                Width="150"
+                                Command="{Binding SavePasswordCommand}"
+                                IsHitTestVisible="{Binding IsPasswordSaveTextVisible}">
+                            <Grid
+                                  Height="16">
+                                <TextBlock Text="{Binding PasswordSubmitButtonText}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontFamily="{StaticResource UIFont}"
+                                           FontSize="13"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource AccentForeground}"
+                                           IsVisible="{Binding IsPasswordSaveTextVisible}" />
+                                <spinners:MirageSpinner Size="44"
+                                                        Color="#1A2B2E"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        IsVisible="{Binding IsSavingPassword}" />
+                            </Grid>
+                        </Button>
+                        <Button Classes="account-secondary"
+                                Content="Cancel"
+                                Command="{Binding CancelPasswordEditorCommand}" />
+                    </StackPanel>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

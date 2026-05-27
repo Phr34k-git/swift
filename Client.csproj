@@ -1,0 +1,81 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\OpenMacro-Logo.ico</ApplicationIcon>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+  
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <UseWindowsForms>false</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Client.Tests\**" />
+    <Compile Remove="Launcher\**" />
+    <Compile Remove="Launcher.Tests\**" />
+    <Compile Remove="New folder\**" />
+    <Compile Remove="OpenMacro-XTernal-0.0.9\**" />
+    <Compile Remove="get angler quest current fish\**" />
+    <Compile Remove="enchantref\**" />
+    <Compile Remove="treasure ref\**" />
+    <Compile Remove="tracking1 ref\**" />
+    <Compile Remove="tracking2 ref\**" />
+    <Compile Remove="RodEquipDebug\**" />
+    <Compile Remove="CounterAttackDebug\**" />
+    <EmbeddedResource Remove="Client.Tests\**" />
+    <EmbeddedResource Remove="Launcher\**" />
+    <EmbeddedResource Remove="Launcher.Tests\**" />
+    <EmbeddedResource Remove="New folder\**" />
+    <EmbeddedResource Remove="OpenMacro-XTernal-0.0.9\**" />
+    <EmbeddedResource Remove="get angler quest current fish\**" />
+    <EmbeddedResource Remove="enchantref\**" />
+    <EmbeddedResource Remove="treasure ref\**" />
+    <EmbeddedResource Remove="tracking1 ref\**" />
+    <EmbeddedResource Remove="tracking2 ref\**" />
+    <EmbeddedResource Remove="RodEquipDebug\**" />
+    <EmbeddedResource Remove="CounterAttackDebug\**" />
+    <None Remove="Client.Tests\**" />
+    <None Remove="Launcher\**" />
+    <None Remove="Launcher.Tests\**" />
+    <None Remove="New folder\**" />
+    <None Remove="OpenMacro-XTernal-0.0.9\**" />
+    <None Remove="get angler quest current fish\**" />
+    <None Remove="enchantref\**" />
+    <None Remove="treasure ref\**" />
+    <None Remove="tracking1 ref\**" />
+    <None Remove="tracking2 ref\**" />
+    <None Remove="RodEquipDebug\**" />
+    <None Remove="CounterAttackDebug\**" />
+    <AvaloniaResource Remove="New folder\**" />
+    <AvaloniaResource Remove="OpenMacro-XTernal-0.0.9\**" />
+    <AvaloniaResource Remove="get angler quest current fish\**" />
+    <AvaloniaResource Remove="enchantref\**" />
+    <AvaloniaResource Remove="treasure ref\**" />
+    <AvaloniaXaml Remove="New folder\**" />
+    <AvaloniaXaml Remove="OpenMacro-XTernal-0.0.9\**" />
+    <AvaloniaXaml Remove="get angler quest current fish\**" />
+    <AvaloniaXaml Remove="enchantref\**" />
+    <AvaloniaXaml Remove="treasure ref\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Client.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\OpenMacro-Logo.ico" />
+    <AvaloniaResource Include="Assets\Fonts\Satoshi\OTF\*.otf" />
+    <AvaloniaResource Include="Assets\locked-out.png" />
+    <AvaloniaResource Include="Assets\maintenance.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.0.2" />
+    <PackageReference Include="Avalonia.Desktop" Version="12.0.2" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="12.0.2" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="12.0.2" />
+    <PackageReference Include="Avalonia.Controls.ColorPicker" Version="12.0.2" />
+  </ItemGroup>
+</Project>

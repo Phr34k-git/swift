@@ -1,0 +1,468 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Client.ViewModels"
+             xmlns:spinners="using:AvaloniaSpinners"
+             x:Class="Client.Views.LoginView"
+             x:DataType="vm:LoginViewModel"
+             Width="900"
+             Height="568"
+             Background="{StaticResource Background}">
+
+    <UserControl.Styles>
+
+        <Style Selector="Button.login-btn">
+            <Setter Property="Background" Value="{StaticResource Accent}"/>
+            <Setter Property="Foreground" Value="{StaticResource AccentForeground}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.15"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.login-btn /template/ ContentPresenter">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.12"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.login-btn:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentHover}"/>
+        </Style>
+        <Style Selector="Button.login-btn:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentPressed}"/>
+        </Style>
+        <Style Selector="Button.login-btn:disabled /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource Surface}"/>
+            <Setter Property="TextElement.Foreground" Value="{StaticResource TextSecondary}"/>
+        </Style>
+
+        <Style Selector="Button.login-btn-secondary">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryBackground}"/>
+            <Setter Property="Foreground" Value="{StaticResource ButtonSecondaryForeground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonSecondaryBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.15"/>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.15"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.login-btn-secondary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryHoverBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonSecondaryHoverBorder}"/>
+            <Setter Property="TextElement.Foreground" Value="{StaticResource ButtonSecondaryForeground}"/>
+        </Style>
+        <Style Selector="Button.login-btn-secondary:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryPressedBackground}"/>
+            <Setter Property="TextElement.Foreground" Value="{StaticResource ButtonSecondaryForeground}"/>
+        </Style>
+        <Style Selector="Button.login-btn-secondary:disabled /template/ ContentPresenter">
+            <Setter Property="BorderBrush" Value="{StaticResource Surface}"/>
+            <Setter Property="TextElement.Foreground" Value="{StaticResource TextSecondary}"/>
+        </Style>
+
+        <!-- Back link button: text-only, no border, no fill -->
+        <Style Selector="Button.back-btn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextSecondary}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.back-btn:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="TextElement.Foreground" Value="{StaticResource TextPrimary}"/>
+        </Style>
+
+        <!-- Credential input fields -->
+        <Style Selector="TextBox.login-input">
+            <Setter Property="Background" Value="{StaticResource Surface}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="CaretBrush" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="SelectionBrush" Value="{StaticResource Accent}"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.15"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="TextBox.login-input:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="{StaticResource InputHoverSurface}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource InputHoverBorder}"/>
+        </Style>
+        <Style Selector="TextBox.login-input:focus /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="{StaticResource InputFocusSurface}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource InputFocusBorder}"/>
+        </Style>
+
+        <Style Selector="Button.update-restart">
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="MinWidth" Value="148"/>
+            <Setter Property="Padding" Value="16,0"/>
+            <Setter Property="Background" Value="{StaticResource Accent}"/>
+            <Setter Property="Foreground" Value="{StaticResource AccentForeground}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+    </UserControl.Styles>
+
+    <Grid ColumnDefinitions="420,480">
+
+        <!-- LEFT: Brand panel â€” darker surface, not black -->
+        <Grid Grid.Column="0" Background="{StaticResource Surface}">
+
+            <Rectangle Width="1"
+                       HorizontalAlignment="Right"
+                       Fill="{StaticResource Border}"/>
+
+            <StackPanel HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Margin="48,0,48,52">
+
+                <TextBlock Text="OpenMacro"
+                           FontFamily="{StaticResource DisplayFont}"
+                           FontSize="32"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource TextPrimary}"
+                           LineHeight="38"/>
+
+                <TextBlock Text="Swift"
+                           FontFamily="{StaticResource DisplayFont}"
+                           FontSize="32"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource Accent}"
+                           LineHeight="38"/>
+
+                <TextBlock Text="The best Automation&#x0a;for Fisch."
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="13"
+                           Foreground="{StaticResource TextSecondary}"
+                           LineHeight="20"
+                           TextWrapping="Wrap"
+                           Margin="0,16,0,0"/>
+
+            </StackPanel>
+
+        </Grid>
+
+        <!-- RIGHT: Auth panel â€” two stacked views, swap via IsCredentialMode -->
+        <Grid Grid.Column="1" Background="{StaticResource Background}">
+
+            <Border Height="40"
+                    VerticalAlignment="Top"
+                    Padding="24,0"
+                    Background="{StaticResource UpdateBannerBackground}"
+                    BorderBrush="{StaticResource Border}"
+                    BorderThickness="0,0,0,1"
+                    IsVisible="{Binding IsUpdateAvailable}">
+                <Grid ColumnDefinitions="Auto,*,Auto"
+                      ColumnSpacing="14">
+                    <TextBlock Grid.Column="0"
+                               Text="Update ready"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="13"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource TextPrimary}"/>
+
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding UpdateStatusText}"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondary}"/>
+
+                    <Button Grid.Column="2"
+                            Classes="update-restart"
+                            Content="{Binding RestartUpdateButtonText}"
+                            Command="{Binding RestartUpdateCommand}"/>
+                </Grid>
+            </Border>
+
+            <!-- Discord view -->
+            <StackPanel Width="300"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="64,0,0,0"
+                        IsVisible="{Binding IsDiscordPaneVisible}">
+
+                <TextBlock Text="Sign in"
+                           FontFamily="{StaticResource DisplayFont}"
+                           FontSize="22"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}"/>
+
+                <TextBlock Text="Fast, with Discord."
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="12"
+                           Foreground="{StaticResource TextSecondary}"
+                           LineHeight="18"
+                           Margin="0,6,0,0"/>
+
+                <Rectangle Height="1"
+                           Fill="{StaticResource Border}"
+                           Margin="0,24,0,24"/>
+
+                <Button Classes="login-btn"
+                        Width="300"
+                        Height="40"
+                        HorizontalAlignment="Left"
+                        Command="{Binding LoginCommand}"
+                        IsVisible="{Binding IsLoginButtonVisible}"
+                        IsHitTestVisible="{Binding IsLoginTextVisible}">
+                    <Grid Width="180"
+                          Height="18">
+                        <TextBlock Text="Continue with Discord"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontFamily="{StaticResource UIFont}"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource AccentForeground}"
+                                   IsVisible="{Binding IsLoginTextVisible}"/>
+
+                        <spinners:MirageSpinner Size="60"
+                                                Color="#1A2B2E"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                IsVisible="{Binding IsLoginInProgress}"/>
+                    </Grid>
+                </Button>
+
+                <Button Classes="login-btn-secondary"
+                        Width="300"
+                        Height="40"
+                        HorizontalAlignment="Left"
+                        Margin="0,8,0,0"
+                        Command="{Binding ShowCredentialLoginCommand}"
+                        IsVisible="{Binding IsLoginButtonVisible}"
+                        IsHitTestVisible="{Binding IsLoginTextVisible}">
+                    <TextBlock Text="Sign in with username"/>
+                </Button>
+
+                <TextBlock Text="{Binding LoginErrorMessage}"
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="12"
+                           Foreground="{StaticResource Error}"
+                           LineHeight="18"
+                           TextWrapping="Wrap"
+                           Margin="0,10,0,0"
+                           IsVisible="{Binding IsLoginErrorVisible}"/>
+
+                <!-- Manual code fallback. Always available so users whose
+                     loopback listener silently fails can still finish sign-in
+                     by pasting the code shown on the API's callback page. -->
+                <Button Classes="back-btn"
+                        Content="Have a code? Paste it"
+                        Margin="0,14,0,0"
+                        Command="{Binding ShowManualCodeCommand}"/>
+
+            </StackPanel>
+
+            <!-- Manual code paste view -->
+            <StackPanel Width="300"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="64,0,0,0"
+                        IsVisible="{Binding IsManualCodeMode}">
+
+                <Button Classes="back-btn"
+                        Content="&#x2190; Back"
+                        Command="{Binding HideManualCodeCommand}"/>
+
+                <TextBlock Text="Paste your code"
+                           FontFamily="{StaticResource DisplayFont}"
+                           FontSize="22"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}"
+                           Margin="0,12,0,0"/>
+
+                <TextBlock Text="Copy the code from the browser page Discord redirected you to, then paste it here."
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="12"
+                           Foreground="{StaticResource TextSecondary}"
+                           LineHeight="18"
+                           TextWrapping="Wrap"
+                           Margin="0,6,0,0"/>
+
+                <Rectangle Height="1"
+                           Fill="{StaticResource Border}"
+                           Margin="0,24,0,24"/>
+
+                <TextBox Classes="login-input"
+                         Width="300"
+                         Height="40"
+                         HorizontalAlignment="Left"
+                         PlaceholderText="Paste code here"
+                         Text="{Binding ManualCode}"/>
+
+                <TextBlock Text="{Binding ManualCodeErrorMessage}"
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="12"
+                           Foreground="{StaticResource Error}"
+                           LineHeight="18"
+                           TextWrapping="Wrap"
+                           Margin="0,6,0,0"
+                           IsVisible="{Binding IsManualCodeErrorVisible}"/>
+
+                <Button Classes="login-btn"
+                        Width="300"
+                        Height="40"
+                        HorizontalAlignment="Left"
+                        Margin="0,16,0,0"
+                        Command="{Binding SubmitManualCodeCommand}"
+                        IsHitTestVisible="{Binding IsManualCodeSubmitTextVisible}">
+                    <Grid Width="180"
+                          Height="18">
+                        <TextBlock Text="Finish sign in"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontFamily="{StaticResource UIFont}"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource AccentForeground}"
+                                   IsVisible="{Binding IsManualCodeSubmitTextVisible}"/>
+
+                        <spinners:MirageSpinner Size="60"
+                                                Color="#1A2B2E"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                IsVisible="{Binding IsManualCodeSubmitting}"/>
+                    </Grid>
+                </Button>
+
+            </StackPanel>
+
+            <!-- Credential view -->
+            <StackPanel Width="300"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="64,0,0,0"
+                        IsVisible="{Binding IsCredentialMode}">
+
+                <Button Classes="back-btn"
+                        Content="&#x2190; Back"
+                        Command="{Binding ShowDiscordLoginCommand}"/>
+
+                <TextBlock Text="Sign in"
+                           FontFamily="{StaticResource DisplayFont}"
+                           FontSize="22"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}"
+                           Margin="0,12,0,0"/>
+
+                <TextBlock Text="Enter your credentials."
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="12"
+                           Foreground="{StaticResource TextSecondary}"
+                           LineHeight="18"
+                           Margin="0,6,0,0"/>
+
+                <Rectangle Height="1"
+                           Fill="{StaticResource Border}"
+                           Margin="0,24,0,24"/>
+
+                <TextBox Classes="login-input"
+                         Width="300"
+                         Height="40"
+                         HorizontalAlignment="Left"
+                         PlaceholderText="Username"
+                         Text="{Binding Username}"/>
+
+                <TextBox Classes="login-input"
+                         Width="300"
+                         Height="40"
+                         HorizontalAlignment="Left"
+                         Margin="0,8,0,0"
+                         PasswordChar="*"
+                         PlaceholderText="Password"
+                         Text="{Binding Password}"/>
+
+                <TextBlock Text="{Binding CredentialErrorMessage}"
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="12"
+                           Foreground="{StaticResource Error}"
+                           LineHeight="18"
+                           TextWrapping="Wrap"
+                           Margin="0,6,0,0"
+                           IsVisible="{Binding IsCredentialErrorVisible}"/>
+
+                <Button Classes="login-btn"
+                        Width="300"
+                        Height="40"
+                        HorizontalAlignment="Left"
+                        Margin="0,16,0,0"
+                        Command="{Binding CredentialLoginCommand}"
+                        IsHitTestVisible="{Binding IsCredentialTextVisible}">
+                    <Grid Width="180"
+                        Height="18">
+                        <TextBlock Text="Sign in"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="{StaticResource UIFont}"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                Foreground="{StaticResource AccentForeground}"
+                                IsVisible="{Binding IsCredentialTextVisible}"/>
+
+                        <spinners:MirageSpinner Size="60"
+                                                Color="#1A2B2E"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                IsVisible="{Binding IsCredentialLoginInProgress}"/>
+                    </Grid>
+                </Button>
+
+            </StackPanel>
+
+            <!-- Version â€” bottom right, lowest visual priority -->
+            <TextBlock Text="v1.0.0"
+                       FontFamily="{StaticResource UIFont}"
+                       FontSize="11"
+                       Foreground="{StaticResource TextSecondary}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+                       Margin="0,0,24,20"/>
+
+        </Grid>
+
+    </Grid>
+
+</UserControl>

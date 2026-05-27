@@ -1,0 +1,71 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Client.ViewModels"
+             xmlns:spinners="using:AvaloniaSpinners"
+             x:Class="Client.Views.BlankView"
+             x:DataType="vm:BlankViewModel"
+             Width="900"
+             Height="568"
+             Background="{StaticResource Background}">
+
+    <Grid ColumnDefinitions="420,480">
+        <Grid Grid.Column="0"
+              Background="{StaticResource Surface}">
+            <Rectangle Width="1"
+                       HorizontalAlignment="Right"
+                       Fill="{StaticResource Border}"/>
+
+            <StackPanel HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Margin="48,0,48,52">
+                <TextBlock Text="OpenMacro"
+                           FontFamily="{StaticResource DisplayFont}"
+                           FontSize="32"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource TextPrimary}"
+                           LineHeight="38"/>
+
+                <TextBlock Text="Swift"
+                           FontFamily="{StaticResource DisplayFont}"
+                           FontSize="32"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource Accent}"
+                           LineHeight="38"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1"
+              Background="{StaticResource Background}">
+            <StackPanel Width="300"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="64,0,0,0">
+                <spinners:MirageSpinner Size="72"
+                                        Color="#6EC6C2"
+                                        HorizontalAlignment="Left"/>
+
+                <TextBlock Text="Restoring session"
+                           FontFamily="{StaticResource DisplayFont}"
+                           FontSize="22"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}"
+                           Margin="0,18,0,0"/>
+
+                <TextBlock Text="Checking your saved session."
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="12"
+                           Foreground="{StaticResource TextSecondary}"
+                           LineHeight="18"
+                           Margin="0,6,0,0"/>
+            </StackPanel>
+
+            <TextBlock Text="v1.0.0"
+                       FontFamily="{StaticResource UIFont}"
+                       FontSize="11"
+                       Foreground="{StaticResource TextSecondary}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+                       Margin="0,0,24,20"/>
+        </Grid>
+    </Grid>
+</UserControl>

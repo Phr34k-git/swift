@@ -1,0 +1,236 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:views="using:Client.Views"
+             xmlns:vm="using:Client.ViewModels"
+             x:Class="Client.Views.ShellView"
+             x:DataType="vm:ShellViewModel"
+             Background="{StaticResource Background}">
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="{x:Type vm:GeneralViewModel}">
+            <views:GeneralView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:FishingViewModel}">
+            <views:FishingView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:FishingAddonsViewModel}">
+            <views:FishingAddonsView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:OtherAutomationViewModel}">
+            <views:OtherAutomationView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AutoTotemViewModel}">
+            <views:AutoTotemView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AutoSovereignRechargeViewModel}">
+            <views:AutoSovereignRechargeView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:HuntDetectViewModel}">
+            <views:HuntDetectView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AutoAnglerViewModel}">
+            <views:AutoAnglerView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AppraiseViewModel}">
+            <views:AppraiseView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TreasureAppraiseViewModel}">
+            <views:TreasureAppraiseView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EnchantViewModel}">
+            <views:EnchantView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AccountViewModel}">
+            <views:AccountView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+            <views:SettingsView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CompactViewModel}">
+            <views:CompactView />
+        </DataTemplate>
+    </UserControl.DataTemplates>
+
+    <UserControl.Styles>
+        <Style Selector="Button.nav-button">
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Margin" Value="8,4" />
+            <Setter Property="Padding" Value="10,0" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Name="NavButtonRoot"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+            <Setter Property="Transitions">
+                <Transitions />
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.nav-button /template/ Border#NavButtonRoot">
+            <Setter Property="Transitions">
+                <Transitions />
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.nav-button:pointerover /template/ Border#NavButtonRoot">
+            <Setter Property="Background" Value="{StaticResource SidebarItemHoverBackground}" />
+        </Style>
+
+        <Style Selector="Button.nav-button:pointerover">
+            <Setter Property="Foreground" Value="{StaticResource SidebarItemHoverForeground}" />
+        </Style>
+
+        <Style Selector="Button.update-restart">
+            <Setter Property="Height" Value="32" />
+            <Setter Property="MinWidth" Value="148" />
+            <Setter Property="Padding" Value="16,0" />
+            <Setter Property="Background" Value="{StaticResource Accent}" />
+            <Setter Property="Foreground" Value="{StaticResource AccentForeground}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+
+        <Style Selector="Button.update-restart /template/ ContentPresenter">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.12" />
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.update-restart:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentHover}" />
+            <Setter Property="TextElement.Foreground" Value="{StaticResource AccentForeground}" />
+        </Style>
+
+        <Style Selector="Button.update-restart:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentPressed}" />
+            <Setter Property="TextElement.Foreground" Value="{StaticResource AccentForeground}" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid Background="{StaticResource Background}">
+
+        <!-- Compact mode (macro running): full-width focused view -->
+        <ContentControl Content="{Binding CompactViewModel}"
+                        IsVisible="{Binding IsCompactMode}" />
+
+        <!-- Normal mode (macro stopped): sidebar + pages -->
+        <Grid ColumnDefinitions="168,*"
+              IsVisible="{Binding !IsCompactMode}"
+              Background="{StaticResource Background}">
+        <Border Grid.Column="0"
+                Background="{StaticResource Background}"
+                BorderBrush="{StaticResource Border}"
+                BorderThickness="0,0,1,0">
+            <ItemsControl Margin="0,8,0,8"
+                          ItemsSource="{Binding NavigationItems}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type vm:ShellNavigationItemViewModel}">
+                        <Button Classes="nav-button"
+                                Background="{Binding Background}"
+                                Foreground="{Binding Foreground}"
+                                Content="{Binding Name}"
+                                Command="{Binding NavigateCommand}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Grid Grid.Column="1"
+              RowDefinitions="Auto,Auto,*">
+            <Border Name="RobloxBannerRoot"
+                    Grid.Row="0"
+                    MinHeight="40"
+                    Padding="24,10"
+                    Background="{StaticResource UpdateBannerBackground}"
+                    BorderBrush="{StaticResource Border}"
+                    BorderThickness="0,0,0,1"
+                    IsVisible="{Binding IsRobloxBannerVisible}">
+                <Grid ColumnDefinitions="Auto,*,Auto"
+                      ColumnSpacing="14">
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding RobloxBannerTitle}"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="13"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource TextPrimary}" />
+
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding RobloxBannerSubtext}"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               TextWrapping="Wrap"
+                               Foreground="{StaticResource TextSecondary}" />
+
+                    <Button Grid.Column="2"
+                            Classes="update-restart"
+                            Content="Fix Guide"
+                            Command="{Binding RobloxFixGuideCommand}"
+                            IsVisible="{Binding IsRobloxFixButtonVisible}" />
+                </Grid>
+            </Border>
+
+            <Border Name="UpdateBannerRoot"
+                    Grid.Row="1"
+                    Height="40"
+                    Padding="24,0"
+                    Background="{StaticResource UpdateBannerBackground}"
+                    BorderBrush="{StaticResource Border}"
+                    BorderThickness="0,0,0,1"
+                    IsVisible="{Binding IsUpdateAvailable}">
+                <Grid ColumnDefinitions="Auto,*,Auto"
+                      ColumnSpacing="14">
+                    <TextBlock Grid.Column="0"
+                               Text="Update ready"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="13"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource TextPrimary}" />
+
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding UpdateStatusText}"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondary}" />
+
+                    <Button Grid.Column="2"
+                            Classes="update-restart"
+                            Content="{Binding RestartUpdateButtonText}"
+                            Command="{Binding RestartUpdateCommand}" />
+                </Grid>
+            </Border>
+
+            <ContentControl Grid.Row="2"
+                            Content="{Binding CurrentPage}" />
+        </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

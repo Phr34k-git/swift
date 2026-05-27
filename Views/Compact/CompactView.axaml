@@ -1,0 +1,192 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Client.ViewModels"
+             x:Class="Client.Views.CompactView"
+             x:DataType="vm:CompactViewModel"
+             Background="{StaticResource Background}">
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock.label">
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Foreground" Value="{StaticResource TextSecondary}" />
+        </Style>
+        <Style Selector="TextBlock.value">
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+        </Style>
+        <Style Selector="TextBlock.value-strong">
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+        </Style>
+        <Style Selector="TextBlock.mono">
+            <Setter Property="FontFamily" Value="{StaticResource MonoFont}" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+        </Style>
+        <Style Selector="Border.chip">
+            <Setter Property="Background" Value="{StaticResource Surface}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="Padding" Value="6,2" />
+        </Style>
+        <Style Selector="Ellipse.dot">
+            <Setter Property="Width" Value="8" />
+            <Setter Property="Height" Value="8" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid Margin="14,10"
+          RowDefinitions="Auto,Auto,Auto,Auto,Auto,*,Auto"
+          RowSpacing="8">
+
+        <!-- ─────────── Tier 1 — header ─────────── -->
+        <Grid Grid.Row="0"
+              ColumnDefinitions="Auto,Auto,*,Auto"
+              ColumnSpacing="10">
+            <TextBlock Grid.Column="0"
+                       Classes="value-strong"
+                       Text="{Binding ActiveMacroText}"
+                       VerticalAlignment="Center" />
+            <Border Grid.Column="1"
+                    Classes="chip"
+                    VerticalAlignment="Center">
+                <TextBlock Classes="mono"
+                           Text="{Binding Phase}"
+                           Foreground="{StaticResource Accent}" />
+            </Border>
+            <TextBlock Grid.Column="3"
+                       Classes="mono"
+                       Text="{Binding RunTimeText}"
+                       VerticalAlignment="Center" />
+        </Grid>
+
+        <!-- Tier 1 — status message -->
+        <TextBlock Grid.Row="1"
+                   Classes="label"
+                   Text="{Binding StatusMessage}"
+                   TextTrimming="CharacterEllipsis"
+                   TextWrapping="NoWrap" />
+
+        <!-- ─────────── Tier 2 — reel visualizer ─────────── -->
+        <Border Grid.Row="2"
+                Height="22"
+                Background="{StaticResource Surface}"
+                BorderBrush="{StaticResource Border}"
+                BorderThickness="1"
+                CornerRadius="3"
+                IsVisible="{Binding HasReelSnapshot}">
+            <Canvas Width="360" Height="20" ClipToBounds="True">
+                <!-- Playerbar slab -->
+                <Border Background="{StaticResource Accent}"
+                        Opacity="0.75"
+                        CornerRadius="2"
+                        Height="14"
+                        Width="{Binding PlayerbarWidthPx}"
+                        Canvas.Left="{Binding PlayerbarLeftPx}"
+                        Canvas.Top="3" />
+                <!-- Fish dot -->
+                <Ellipse Width="12"
+                         Height="12"
+                         Fill="{StaticResource TextPrimary}"
+                         Stroke="{StaticResource Background}"
+                         StrokeThickness="2"
+                         Canvas.Left="{Binding FishMarkerLeftPx}"
+                         Canvas.Top="4" />
+            </Canvas>
+        </Border>
+
+        <!-- ─────────── Tier 1 — stats line (three equal-width cells: Caught left, Lost center, SR right) ─────────── -->
+        <Grid Grid.Row="3"
+              ColumnDefinitions="*,*,*">
+            <StackPanel Grid.Column="0"
+                        Orientation="Horizontal"
+                        Spacing="6"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center">
+                <TextBlock Classes="label" Text="Caught" />
+                <TextBlock Classes="value-strong" Text="{Binding CaughtText}" />
+            </StackPanel>
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal"
+                        Spacing="6"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <TextBlock Classes="label" Text="Lost" />
+                <TextBlock Classes="value" Text="{Binding LostText}" />
+            </StackPanel>
+            <StackPanel Grid.Column="2"
+                        Orientation="Horizontal"
+                        Spacing="6"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
+                <TextBlock Classes="label" Text="SR" />
+                <TextBlock Classes="value" Text="{Binding SuccessRateText}" />
+            </StackPanel>
+        </Grid>
+
+        <!-- ─────────── Tier 3 — schedules ─────────── -->
+        <Grid Grid.Row="4"
+              ColumnDefinitions="*,*"
+              ColumnSpacing="12">
+            <StackPanel Grid.Column="0" Orientation="Vertical" Spacing="2">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <TextBlock Classes="label" Text="Totem" />
+                    <TextBlock Classes="value" Text="{Binding SelectedTotemName}" />
+                </StackPanel>
+                <TextBlock Classes="label"
+                           Text="{Binding AquariumStatusText}"
+                           TextTrimming="CharacterEllipsis"
+                           TextWrapping="NoWrap" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Vertical" Spacing="2">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <TextBlock Classes="label" Text="World" />
+                    <TextBlock Classes="value" Text="{Binding CurrentWeather}" />
+                    <TextBlock Classes="label" Text="•" />
+                    <TextBlock Classes="value" Text="{Binding CurrentCycle}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="6"
+                            IsVisible="{Binding AnySurgeActive}">
+                    <Ellipse Classes="dot"
+                             Fill="#FFD27F"
+                             IsVisible="{Binding ShinySurgeActive}"
+                             ToolTip.Tip="Shiny surge" />
+                    <Ellipse Classes="dot"
+                             Fill="#9ED1FF"
+                             IsVisible="{Binding SparklingSurgeActive}"
+                             ToolTip.Tip="Sparkling surge" />
+                    <Ellipse Classes="dot"
+                             Fill="#C99EFF"
+                             IsVisible="{Binding MutationSurgeActive}"
+                             ToolTip.Tip="Mutation surge" />
+                    <TextBlock Classes="label" Text="surge" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <!-- spacer -->
+        <Border Grid.Row="5" />
+
+        <!-- ─────────── Tier 4 — footer: Roblox version (left) + hotkey (right) ─────────── -->
+        <Grid Grid.Row="6"
+              ColumnDefinitions="*,Auto"
+              ColumnSpacing="8">
+            <TextBlock Grid.Column="0"
+                       Classes="label"
+                       Text="{Binding OffsetsVersion}"
+                       TextTrimming="CharacterEllipsis"
+                       VerticalAlignment="Center" />
+            <Border Grid.Column="1"
+                    Classes="chip"
+                    VerticalAlignment="Center">
+                <TextBlock Classes="mono"
+                           Text="{Binding HotkeyText}" />
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

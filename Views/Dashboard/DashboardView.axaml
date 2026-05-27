@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Client.ViewModels"
+             x:Class="Client.Views.DashboardView"
+             x:DataType="vm:DashboardViewModel"
+             Width="900"
+             Height="568"
+             Background="{StaticResource Background}">
+    <Grid Margin="34"
+          RowDefinitions="Auto,Auto,*">
+        <TextBlock Grid.Row="0"
+                   Text="Dashboard"
+                   FontFamily="{StaticResource DisplayFont}"
+                   FontSize="24"
+                   FontWeight="SemiBold"
+                   Foreground="{StaticResource TextPrimary}" />
+
+        <Border Grid.Row="1"
+                Margin="0,20,0,0"
+                Width="430"
+                HorizontalAlignment="Left"
+                Classes="app-card">
+            <StackPanel Spacing="8">
+                <TextBlock Text="Overview"
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="12"
+                           Foreground="{StaticResource TextSecondary}" />
+                <TextBlock Text="Dashboard modules are being expanded."
+                           FontFamily="{StaticResource DisplayFont}"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

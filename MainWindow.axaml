@@ -1,0 +1,90 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="using:Client.Views"
+        xmlns:vm="using:Client.ViewModels"
+        mc:Ignorable="d"
+        x:Class="Client.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="OpenMacro"
+        Icon="/Assets/OpenMacro-Logo.ico"
+        Width="900"
+        Height="600"
+        Topmost="True"
+        CanResize="False"
+        Background="{StaticResource Background}"
+        ExtendClientAreaToDecorationsHint="True"
+        WindowDecorations="None">
+    <Window.DataTemplates>
+        <DataTemplate DataType="{x:Type vm:BlankViewModel}">
+            <views:BlankView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+            <views:LoginView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ShellViewModel}">
+            <views:ShellView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
+            <views:DashboardView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:LockedOutViewModel}">
+            <views:LockedOutView />
+        </DataTemplate>
+    </Window.DataTemplates>
+
+    <Window.Styles>
+        <Style Selector="Button.chrome-button">
+            <Setter Property="Width" Value="32" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource TextSecondary}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="FontFamily" Value="{StaticResource MonoFont}" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style Selector="Button.chrome-button:pointerover">
+            <Setter Property="Background" Value="{StaticResource Surface}" />
+        </Style>
+    </Window.Styles>
+
+    <Grid RowDefinitions="32,*"
+          Background="{StaticResource Background}">
+        <Grid x:Name="TitleBar"
+              Grid.Row="0"
+              Background="{StaticResource Surface}"
+              IsHitTestVisible="True"
+              PointerPressed="TitleBar_OnPointerPressed"
+              ColumnDefinitions="*,Auto">
+            <TextBlock Grid.Column="0"
+                       Text="OpenMacro Swift"
+                       Margin="14,0,0,0"
+                       VerticalAlignment="Center"
+                       FontFamily="{StaticResource DisplayFont}"
+                       FontSize="11"
+                       Foreground="{StaticResource TextPrimary}" />
+
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal">
+                <Button x:Name="MinimizeButton"
+                        Classes="chrome-button"
+                        Click="MinimizeButton_OnClick">
+                    &#x2212;
+                </Button>
+                <Button x:Name="CloseButton"
+                        Classes="chrome-button"
+                        Click="CloseButton_OnClick">
+                    &#x00D7;
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <ContentControl Grid.Row="1"
+                        Content="{Binding CurrentView}" />
+    </Grid>
+</Window>

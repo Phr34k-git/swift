@@ -1,0 +1,246 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="using:Client.Controls"
+             x:Class="Client.App"
+             RequestedThemeVariant="Dark">
+    <Application.Resources>
+        <SolidColorBrush x:Key="Background" Color="#0E0E0E" />
+        <SolidColorBrush x:Key="Surface" Color="#161616" />
+        <SolidColorBrush x:Key="Border" Color="#2A2A2A" />
+        <SolidColorBrush x:Key="Accent" Color="#A9CFCB" />
+        <SolidColorBrush x:Key="AccentHover" Color="#8FBFBB" />
+        <SolidColorBrush x:Key="AccentPressed" Color="#789F9B" />
+        <SolidColorBrush x:Key="AccentForeground" Color="#0E0E0E" />
+        <SolidColorBrush x:Key="TextPrimary" Color="#F0F0F0" />
+        <SolidColorBrush x:Key="TextSecondary" Color="#666666" />
+        <SolidColorBrush x:Key="Success" Color="#4ADE80" />
+        <SolidColorBrush x:Key="Error" Color="#F87171" />
+        <LinearGradientBrush x:Key="StarlightTruffleWormGradient" StartPoint="0%,50%" EndPoint="100%,50%">
+            <GradientStop Color="#FF6AB7" Offset="0" />
+            <GradientStop Color="#9CFF9A" Offset="0.52" />
+            <GradientStop Color="#86B8FF" Offset="1" />
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="InputHoverSurface" Color="#1A1A1A" />
+        <SolidColorBrush x:Key="InputHoverBorder" Color="#3A3A3A" />
+        <SolidColorBrush x:Key="InputFocusSurface" Color="#181818" />
+        <SolidColorBrush x:Key="InputFocusBorder" Color="#5F8581" />
+        <SolidColorBrush x:Key="TableSurface" Color="#141414" />
+        <SolidColorBrush x:Key="TableRowBackground" Color="#141414" />
+        <SolidColorBrush x:Key="TableGap" Color="#0E0E0E" />
+        <SolidColorBrush x:Key="TableHeaderBackground" Color="#1B1B1B" />
+        <SolidColorBrush x:Key="TableEmptyBackground" Color="#141414" />
+        <SolidColorBrush x:Key="TableRowDisabled" Color="#141414" />
+        <SolidColorBrush x:Key="SidebarItemForeground" Color="#666666" />
+        <SolidColorBrush x:Key="SidebarItemHoverForeground" Color="#F0F0F0" />
+        <SolidColorBrush x:Key="SidebarItemHoverBackground" Color="#1D1F1F" />
+        <SolidColorBrush x:Key="SidebarItemSelectedForeground" Color="#F0F0F0" />
+        <SolidColorBrush x:Key="SidebarItemSelectedBackground" Color="#242424" />
+        <SolidColorBrush x:Key="ButtonSecondaryBackground" Color="#00000000" />
+        <SolidColorBrush x:Key="ButtonSecondaryForeground" Color="#F0F0F0" />
+        <SolidColorBrush x:Key="ButtonSecondaryBorder" Color="#2A2A2A" />
+        <SolidColorBrush x:Key="ButtonSecondaryHoverBackground" Color="#1A1A1A" />
+        <SolidColorBrush x:Key="ButtonSecondaryHoverBorder" Color="#3A3A3A" />
+        <SolidColorBrush x:Key="ButtonSecondaryPressedBackground" Color="#181818" />
+        <SolidColorBrush x:Key="CheckboxBackground" Color="#161616" />
+        <SolidColorBrush x:Key="CheckboxBorder" Color="#666666" />
+        <SolidColorBrush x:Key="CheckboxHoverBackground" Color="#1A1A1A" />
+        <SolidColorBrush x:Key="CheckboxHoverBorder" Color="#A9CFCB" />
+        <SolidColorBrush x:Key="CheckboxCheckedBackground" Color="#A9CFCB" />
+        <SolidColorBrush x:Key="CheckboxCheckedBorder" Color="#A9CFCB" />
+        <SolidColorBrush x:Key="CheckboxCheckForeground" Color="#0E0E0E" />
+        <SolidColorBrush x:Key="CheckboxLabelForeground" Color="#F0F0F0" />
+        <SolidColorBrush x:Key="CheckboxLabelHoverForeground" Color="#F0F0F0" />
+        <SolidColorBrush x:Key="UpdateBannerBackground" Color="#0F1D1C" />
+        <SolidColorBrush x:Key="ThemeCardHoverBackground" Color="#1A1A1A" />
+        <SolidColorBrush x:Key="ToggleHoverBackground" Color="#141A20" />
+        <SolidColorBrush x:Key="ToggleHoverBorder" Color="#273849" />
+        <SolidColorBrush x:Key="ToggleCheckedBackground" Color="#121C26" />
+        <SolidColorBrush x:Key="ToggleCheckedBorder" Color="#3A566F" />
+        <FontFamily x:Key="DisplayFont">avares://Client/Assets/Fonts/Satoshi/OTF#Satoshi, Inter, Segoe UI, Arial</FontFamily>
+        <FontFamily x:Key="UIFont">avares://Client/Assets/Fonts/Satoshi/OTF#Satoshi, Inter, Segoe UI, Arial</FontFamily>
+        <FontFamily x:Key="MonoFont">Cascadia Code, Consolas</FontFamily>
+    </Application.Resources>
+
+    <Application.Styles>
+        <FluentTheme />
+        <StyleInclude Source="avares://Avalonia.Controls.ColorPicker/Themes/Fluent/Fluent.xaml" />
+
+        <Style Selector="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+        </Style>
+
+        <Style Selector="Button">
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style Selector="Border.app-card">
+            <Setter Property="Background" Value="{StaticResource Surface}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="14" />
+        </Style>
+
+        <Style Selector="Border.app-header">
+            <Setter Property="Background" Value="{StaticResource TableSurface}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="14,10" />
+        </Style>
+
+        <Style Selector="Button.app-primary">
+            <Setter Property="Background" Value="{StaticResource Accent}" />
+            <Setter Property="Foreground" Value="{StaticResource AccentForeground}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+
+        <Style Selector="Button.app-primary /template/ ContentPresenter">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.12" />
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.app-primary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentHover}" />
+            <Setter Property="TextElement.Foreground" Value="{StaticResource AccentForeground}" />
+        </Style>
+
+        <Style Selector="Button.app-primary:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentPressed}" />
+            <Setter Property="TextElement.Foreground" Value="{StaticResource AccentForeground}" />
+        </Style>
+
+        <Style Selector="Button.app-secondary">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryBackground}" />
+            <Setter Property="Foreground" Value="{StaticResource ButtonSecondaryForeground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonSecondaryBorder}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+
+        <Style Selector="Button.app-secondary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryHoverBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonSecondaryHoverBorder}" />
+            <Setter Property="TextElement.Foreground" Value="{StaticResource ButtonSecondaryForeground}" />
+        </Style>
+
+        <Style Selector="Button.app-secondary:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource ButtonSecondaryPressedBackground}" />
+            <Setter Property="TextElement.Foreground" Value="{StaticResource ButtonSecondaryForeground}" />
+        </Style>
+
+        <Style Selector="TextBox.app-input">
+            <Setter Property="Background" Value="{StaticResource Surface}" />
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+            <Setter Property="CaretBrush" Value="{StaticResource TextPrimary}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Padding" Value="12,0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style Selector="ComboBox.app-select">
+            <Setter Property="Background" Value="{StaticResource Surface}" />
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Padding" Value="12,0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style Selector="ComboBox.app-select:pointerover">
+            <Setter Property="Background" Value="{StaticResource InputHoverSurface}" />
+            <Setter Property="BorderBrush" Value="{StaticResource InputHoverBorder}" />
+        </Style>
+
+        <Style Selector="ComboBox.app-select:pointerover /template/ Border">
+            <Setter Property="Background" Value="{StaticResource InputHoverSurface}" />
+            <Setter Property="BorderBrush" Value="{StaticResource InputHoverBorder}" />
+        </Style>
+
+        <Style Selector="Button.app-nav">
+            <Setter Property="Background" Value="{StaticResource TableSurface}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Padding" Value="14,0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="Path.app-nav-arrow">
+            <Setter Property="Stroke" Value="{StaticResource TextSecondary}" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Stroke" Duration="0:0:0.12" />
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.app-nav:pointerover Path.app-nav-arrow">
+            <Setter Property="Stroke" Value="{StaticResource TextPrimary}" />
+        </Style>
+
+        <Style Selector="CheckBox">
+            <Setter Property="Foreground" Value="{StaticResource CheckboxLabelForeground}" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+
+        <Style Selector="CheckBox:pointerover">
+            <Setter Property="Foreground" Value="{StaticResource CheckboxLabelHoverForeground}" />
+        </Style>
+
+        <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="{StaticResource InputHoverSurface}" />
+            <Setter Property="BorderBrush" Value="{StaticResource InputHoverBorder}" />
+        </Style>
+
+        <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="{StaticResource InputFocusSurface}" />
+            <Setter Property="BorderBrush" Value="{StaticResource InputFocusBorder}" />
+        </Style>
+
+        <Style Selector="controls|AppTable">
+            <Setter Property="MinHeight" Value="96" />
+        </Style>
+
+        <Style Selector="controls|AppKeyValueList">
+            <Setter Property="MinHeight" Value="42" />
+        </Style>
+    </Application.Styles>
+</Application>

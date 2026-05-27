@@ -1,0 +1,219 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Client.ViewModels"
+             x:Class="Client.Views.HuntDetectView"
+             x:Name="Root"
+             x:DataType="vm:HuntDetectViewModel"
+             Focusable="True"
+             PointerPressed="OnRootPointerPressed"
+             Background="{StaticResource Background}">
+    <UserControl.Styles>
+        <Style Selector="Border.hd-panel">
+            <Setter Property="Background" Value="{StaticResource Surface}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="16" />
+        </Style>
+        <Style Selector="Border.hd-item">
+            <Setter Property="Background" Value="{StaticResource Surface}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="10,8" />
+            <Setter Property="Margin" Value="0,0,0,6" />
+        </Style>
+        <Style Selector="Border.hd-item:pointerover">
+            <Setter Property="Background" Value="{StaticResource ToggleHoverBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ToggleHoverBorder}" />
+        </Style>
+        <Style Selector="CheckBox.hd-checkbox">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+        </Style>
+        <Style Selector="ToggleButton.hd-target">
+            <Setter Property="Background" Value="{StaticResource Surface}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="10,8" />
+            <Setter Property="Margin" Value="0,0,0,8" />
+            <Setter Property="Height" Value="34" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style Selector="ToggleButton.hd-target:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource ToggleHoverBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ToggleHoverBorder}" />
+        </Style>
+        <Style Selector="ToggleButton.hd-target:checked /template/ ContentPresenter">
+            <Setter Property="Background" Value="#1F2124" />
+            <Setter Property="BorderBrush" Value="#3A3D42" />
+        </Style>
+        <Style Selector="ToggleSwitch.hd-color-toggle">
+            <Setter Property="OnContent" Value="" />
+            <Setter Property="OffContent" Value="" />
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid Margin="34,0,34,34"
+          RowDefinitions="Auto,*">
+        <Border Grid.Row="0"
+                Classes="app-card"
+                Padding="16">
+            <Grid RowDefinitions="Auto,Auto"
+                  RowSpacing="8">
+                <Grid Grid.Row="0"
+                      ColumnDefinitions="*">
+                    <TextBlock Grid.Column="0"
+                               Text="Discord Webhook"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondary}" />
+                </Grid>
+                <TextBox Classes="app-input"
+                         Grid.Row="1"
+                         Height="34"
+                         Text="{Binding DiscordWebhook}"
+                         PlaceholderText="https://discord.com/api/webhooks/..." />
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1"
+              Margin="0,12,0,0"
+              ColumnDefinitions="3*,0.9*"
+              ColumnSpacing="12"
+              MinHeight="420">
+            <Border Grid.Column="0"
+                    Classes="hd-panel">
+                <Grid RowDefinitions="Auto,Auto,*"
+                      RowSpacing="4">
+                    <Grid Grid.Row="0"
+                          ColumnDefinitions="*,Auto"
+                          ColumnSpacing="8">
+                        <TextBox Grid.Column="0"
+                                 Classes="app-input"
+                                 Height="34"
+                                 Text="{Binding NewTargetText}"
+                                 PlaceholderText="New hunt name" />
+                        <Button Grid.Column="1"
+                                Classes="app-primary"
+                                Height="34"
+                                Width="96"
+                                HorizontalAlignment="Right"
+                                Content="Add"
+                                Command="{Binding AddTargetCommand}" />
+                    </Grid>
+
+                    <Grid Grid.Row="1"
+                          ColumnDefinitions="*,Auto"
+                          ColumnSpacing="8">
+                        <TextBox Grid.Column="0"
+                                 Classes="app-input"
+                                 Height="34"
+                                 Text="{Binding SearchText}"
+                                 PlaceholderText="Search targets" />
+                        <Button Grid.Column="1"
+                                Classes="app-secondary"
+                                Height="34"
+                                Width="96"
+                                HorizontalAlignment="Right"
+                                Content="Unselect all"
+                                Command="{Binding UnselectAllCommand}" />
+                    </Grid>
+
+                    <ScrollViewer Grid.Row="2"
+                                  VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding AvailableTargets}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="3" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:HuntDetectTargetOptionViewModel">
+                                    <ToggleButton Classes="hd-target"
+                                                  IsChecked="{Binding IsSelected}">
+                                        <TextBlock Text="{Binding Name}"
+                                                   Foreground="{Binding Brush}"
+                                                   HorizontalAlignment="Center"
+                                                   TextAlignment="Center"
+                                                   TextTrimming="CharacterEllipsis" />
+                                    </ToggleButton>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="1"
+                    Classes="hd-panel"
+                    VerticalAlignment="Top">
+                <Grid RowDefinitions="Auto,Auto">
+                    <TextBlock Grid.Row="0"
+                               Text="Selected Targets"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="14"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource TextPrimary}" />
+
+                    <Grid Grid.Row="1"
+                          Margin="0,12,0,0">
+                        <TextBlock Text="None Selected"
+                                   IsVisible="{Binding ShowEmptySelectedState}"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   FontFamily="{StaticResource UIFont}"
+                                   FontSize="12"
+                                   Foreground="{StaticResource TextSecondary}" />
+
+                        <ScrollViewer IsVisible="{Binding HasSelectedTargets}"
+                                      MaxHeight="280"
+                                      Margin="6,0,0,0"
+                                      VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding SelectedTargets}">
+                                <ItemsControl.Margin>0,0,12,0</ItemsControl.Margin>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:HuntDetectSelectedTargetViewModel">
+                                        <Grid ColumnDefinitions="*,28"
+                                              Margin="0,0,0,6">
+                                            <Border Grid.Column="0"
+                                                    Classes="hd-item"
+                                                    Margin="0">
+                                                <TextBlock Text="{Binding Name}"
+                                                           FontFamily="{StaticResource UIFont}"
+                                                           FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           TextTrimming="CharacterEllipsis" />
+                                            </Border>
+                                            <Button Grid.Column="1"
+                                                    Classes="app-secondary"
+                                                    Width="24"
+                                                    Height="24"
+                                                    Margin="4,4,0,0"
+                                                    Padding="0"
+                                                    Content="×"
+                                                    Command="{Binding #Root.DataContext.RemoveSelectedTargetCommand}"
+                                                    CommandParameter="{Binding .}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,4 @@
+C:\Users\ethan\source\repos\Gamething\OpenMacro-Client\soruce\artifacts\20260528-072916\Client.pdb
+C:\Users\ethan\source\repos\Gamething\OpenMacro-Client\soruce\artifacts\20260528-072916\libHarfBuzzSharp.pdb
+C:\Users\ethan\source\repos\Gamething\OpenMacro-Client\soruce\artifacts\20260528-072916\libSkiaSharp.pdb
+C:\Users\ethan\source\repos\Gamething\OpenMacro-Client\soruce\artifacts\20260528-072916\Client.exe

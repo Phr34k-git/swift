@@ -1,0 +1,106 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Client.ViewModels"
+             x:Class="Client.Views.OtherAutomationView"
+             x:DataType="vm:OtherAutomationViewModel"
+             Background="{StaticResource Background}">
+    <ScrollViewer Margin="0"
+                  VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="12">
+            <StackPanel Spacing="8"
+                        Margin="34,34,34,0">
+                <TextBlock Text="{Binding ActiveAutomationTitle}"
+                           FontFamily="{StaticResource DisplayFont}"
+                           FontSize="24"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}" />
+
+                <StackPanel IsVisible="{Binding ShowAutomationTabs}"
+                            Spacing="8">
+                <Border Classes="app-header">
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+                        <TextBlock Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Text="Auto Angler"
+                                   FontFamily="{StaticResource UIFont}"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimary}" />
+                        <CheckBox Grid.Column="1"
+                                  VerticalAlignment="Center"
+                                  Content="On"
+                                  IsChecked="{Binding AutoAnglerEnabled}"
+                                  FontFamily="{StaticResource UIFont}"
+                                  FontSize="12"
+                                  Foreground="{StaticResource TextPrimary}" />
+                    </Grid>
+                </Border>
+
+                <Border Classes="app-header">
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+                        <TextBlock Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Text="Enchant"
+                                   FontFamily="{StaticResource UIFont}"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimary}" />
+                        <CheckBox Grid.Column="1"
+                                  VerticalAlignment="Center"
+                                  Content="On"
+                                  IsChecked="{Binding EnchantEnabled}"
+                                  FontFamily="{StaticResource UIFont}"
+                                  FontSize="12"
+                                  Foreground="{StaticResource TextPrimary}" />
+                    </Grid>
+                </Border>
+
+                <Border Classes="app-header">
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+                        <TextBlock Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Text="Appraise"
+                                   FontFamily="{StaticResource UIFont}"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimary}" />
+                        <CheckBox Grid.Column="1"
+                                  VerticalAlignment="Center"
+                                  Content="On"
+                                  IsChecked="{Binding AppraiseEnabled}"
+                                  FontFamily="{StaticResource UIFont}"
+                                  FontSize="12"
+                                  Foreground="{StaticResource TextPrimary}" />
+                    </Grid>
+                </Border>
+
+                <Border Classes="app-header">
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+                        <TextBlock Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Text="Treasure Appraise"
+                                   FontFamily="{StaticResource UIFont}"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimary}" />
+                        <CheckBox Grid.Column="1"
+                                  VerticalAlignment="Center"
+                                  Content="On"
+                                  IsChecked="{Binding TreasureAppraiseEnabled}"
+                                  FontFamily="{StaticResource UIFont}"
+                                  FontSize="12"
+                                  Foreground="{StaticResource TextPrimary}" />
+                    </Grid>
+                </Border>
+                </StackPanel>
+            </StackPanel>
+
+            <ContentControl IsVisible="{Binding HasActiveAutomation}"
+                            Content="{Binding ActiveAutomation}" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

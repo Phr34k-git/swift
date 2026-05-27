@@ -1,0 +1,178 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Client.ViewModels"
+             x:Class="Client.Views.FishingAddonsView"
+             x:DataType="vm:FishingAddonsViewModel"
+             Background="{StaticResource Background}">
+    <ScrollViewer Margin="0"
+                  VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="12">
+            <StackPanel Spacing="8"
+                        Margin="34,34,34,0">
+                <TextBlock Text="{Binding ActiveAddonTitle}"
+                           FontFamily="{StaticResource DisplayFont}"
+                           FontSize="24"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}" />
+
+                <Border Classes="app-header"
+                        IsVisible="{Binding ShowAutoAquariumSection}">
+                <Grid ColumnDefinitions="*,Auto,Auto"
+                      ColumnSpacing="12">
+                    <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Text="Auto Aquarium"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="14"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource TextPrimary}" />
+                    <CheckBox Grid.Column="1"
+                              VerticalAlignment="Center"
+                              Content="On"
+                              IsChecked="{Binding AutoAquariumEnabled}"
+                              FontFamily="{StaticResource UIFont}"
+                              FontSize="12"
+                              Foreground="{StaticResource TextPrimary}" />
+                    <Button Grid.Column="2"
+                            Classes="app-primary"
+                            Width="54"
+                            Height="28"
+                            Padding="0"
+                            FontSize="11"
+                            Content="{Binding AutoAquariumExpandGlyph}"
+                            Command="{Binding ToggleAutoAquariumExpandedCommand}" />
+                </Grid>
+                </Border>
+
+                <Border IsVisible="{Binding IsAutoAquariumExpanded}"
+                        Classes="app-card">
+                <StackPanel Spacing="10">
+                    <Grid ColumnDefinitions="180,*"
+                          ColumnSpacing="14">
+                        <StackPanel Grid.Column="0"
+                                    Spacing="6">
+                            <TextBlock Text="Cycle Delay (min)"
+                                       FontFamily="{StaticResource UIFont}"
+                                       FontSize="12"
+                                       Foreground="{StaticResource TextSecondary}" />
+                            <TextBox Classes="app-input"
+                                     Width="170"
+                                     Height="34"
+                                     Text="{Binding AutoAquariumCycleDelayMinutes}" />
+                        </StackPanel>
+                        <TextBlock Grid.Column="1"
+                                   VerticalAlignment="Center"
+                                   Text="Time between aquarium runs."
+                                   FontFamily="{StaticResource UIFont}"
+                                   FontSize="12"
+                                   Foreground="{StaticResource TextSecondary}" />
+                    </Grid>
+                </StackPanel>
+                </Border>
+
+                <Border Classes="app-header"
+                        IsVisible="{Binding ShowAutoTotemSection}">
+                <Grid ColumnDefinitions="*,Auto,Auto"
+                      ColumnSpacing="12">
+                    <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="14"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource TextPrimary}">
+                        <Run Text="Auto Totem" />
+                        <Run Text=" - Leave roblox chat open"
+                             Foreground="{StaticResource TextSecondary}" />
+                    </TextBlock>
+                    <CheckBox Grid.Column="1"
+                              VerticalAlignment="Center"
+                              Content="On"
+                              IsChecked="{Binding AutoTotemEnabled}"
+                              FontFamily="{StaticResource UIFont}"
+                              FontSize="12"
+                              Foreground="{StaticResource TextPrimary}" />
+                    <Button Grid.Column="2"
+                            Classes="app-primary"
+                            Width="54"
+                            Height="28"
+                            Padding="0"
+                            FontSize="11"
+                            Content="{Binding AutoTotemExpandGlyph}"
+                            Command="{Binding ToggleAutoTotemExpandedCommand}" />
+                </Grid>
+                </Border>
+
+                <Border Classes="app-header"
+                        IsVisible="{Binding ShowAutoSovereignRechargeSection}">
+                <Grid ColumnDefinitions="*,Auto,Auto"
+                      ColumnSpacing="12">
+                    <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="14"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource TextPrimary}">
+                        <Run Text="Auto Sovereign Recharge" />
+                        <Run Text=" - Gamepass enchant required"
+                             Foreground="{StaticResource TextSecondary}" />
+                    </TextBlock>
+                    <CheckBox Grid.Column="1"
+                              VerticalAlignment="Center"
+                              Content="On"
+                              IsChecked="{Binding AutoSovereignRechargeEnabled}"
+                              FontFamily="{StaticResource UIFont}"
+                              FontSize="12"
+                              Foreground="{StaticResource TextPrimary}" />
+                    <Button Grid.Column="2"
+                            Classes="app-primary"
+                            Width="54"
+                            Height="28"
+                            Padding="0"
+                            FontSize="11"
+                            Content="{Binding AutoSovereignRechargeExpandGlyph}"
+                            Command="{Binding ToggleAutoSovereignRechargeExpandedCommand}" />
+                </Grid>
+                </Border>
+
+                <Border Classes="app-header"
+                        IsVisible="{Binding ShowHuntDetectSection}">
+                <Grid ColumnDefinitions="*,Auto,Auto"
+                      ColumnSpacing="12">
+                    <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource UIFont}"
+                               FontSize="14"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource TextPrimary}">
+                        <Run Text="Hunt Detect" />
+                        <Run Text=" - Leave roblox chat open"
+                             Foreground="{StaticResource TextSecondary}" />
+                    </TextBlock>
+                    <CheckBox Grid.Column="1"
+                              VerticalAlignment="Center"
+                              Content="On"
+                              IsChecked="{Binding HuntDetectEnabled}"
+                              FontFamily="{StaticResource UIFont}"
+                              FontSize="12"
+                              Foreground="{StaticResource TextPrimary}" />
+                    <Button Grid.Column="2"
+                            Classes="app-primary"
+                            Width="54"
+                            Height="28"
+                            Padding="0"
+                            FontSize="11"
+                            Content="{Binding HuntDetectExpandGlyph}"
+                            Command="{Binding ToggleHuntDetectExpandedCommand}" />
+                </Grid>
+                </Border>
+            </StackPanel>
+
+            <ContentControl IsVisible="{Binding IsAutoTotemExpanded}"
+                            Content="{Binding AutoTotem}" />
+            <ContentControl IsVisible="{Binding IsAutoSovereignRechargeExpanded}"
+                            Content="{Binding AutoSovereignRecharge}" />
+            <ContentControl IsVisible="{Binding IsHuntDetectExpanded}"
+                            Content="{Binding HuntDetect}" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

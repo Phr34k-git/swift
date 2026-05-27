@@ -1,0 +1,338 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:Client.Views"
+             xmlns:vm="using:Client.ViewModels"
+             x:Class="Client.Views.SettingsClientView"
+             x:DataType="vm:SettingsClientViewModel"
+             Background="{StaticResource Background}">
+    <UserControl.Styles>
+        <Style Selector="Button.theme-card-btn /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Border.theme-card">
+            <Setter Property="Background" Value="{StaticResource Surface}" />
+        </Style>
+        <Style Selector="Button.theme-card-btn:pointerover Border.theme-card">
+            <Setter Property="Background" Value="{StaticResource ThemeCardHoverBackground}" />
+        </Style>
+        <Style Selector="Button.theme-card-btn:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Button.theme-card-btn:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Button.settings-back">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource TextSecondary}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style Selector="Button.settings-back:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="TextElement.Foreground" Value="{StaticResource TextPrimary}" />
+        </Style>
+    </UserControl.Styles>
+    <UserControl.Resources>
+        <local:BoolToBorderBrushConverter x:Key="BoolToBorderBrush" />
+    </UserControl.Resources>
+
+    <Grid Margin="34" RowDefinitions="Auto,Auto,Auto,*">
+        <StackPanel Grid.Row="0"
+                    Spacing="8">
+            <Button Classes="settings-back"
+                    Content="Back"
+                    Command="{Binding BackCommand}" />
+            <TextBlock Text="Client"
+                       FontFamily="{StaticResource DisplayFont}"
+                       FontSize="24"
+                       FontWeight="SemiBold"
+                       Foreground="{StaticResource TextPrimary}" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Margin="0,24,0,0">
+            <TextBlock Text="Theme"
+                       FontFamily="{StaticResource UIFont}"
+                       FontSize="13"
+                       FontWeight="SemiBold"
+                       Foreground="{StaticResource TextPrimary}" />
+            <Rectangle Height="1"
+                       Fill="{StaticResource Border}"
+                       Margin="0,8,0,0" />
+
+            <StackPanel Orientation="Horizontal"
+                        Spacing="8"
+                        Margin="0,14,0,0">
+                <!-- Dark card -->
+                <Button Classes="theme-card-btn"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Padding="0"
+                        Cursor="Hand"
+                        Command="{Binding SelectDarkCommand}">
+                    <Border Width="120"
+                            Height="64"
+                            Classes="theme-card"
+                            CornerRadius="6"
+                            BorderThickness="1.5"
+                            BorderBrush="{Binding IsDarkSelected, Converter={StaticResource BoolToBorderBrush}}">
+                        <TextBlock Text="Dark"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontFamily="{StaticResource UIFont}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimary}" />
+                    </Border>
+                </Button>
+
+                <!-- Light card -->
+                <Button Classes="theme-card-btn"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Padding="0"
+                        Cursor="Hand"
+                        Command="{Binding SelectLightCommand}">
+                    <Border Width="120"
+                            Height="64"
+                            Classes="theme-card"
+                            CornerRadius="6"
+                            BorderThickness="1.5"
+                            BorderBrush="{Binding IsLightSelected, Converter={StaticResource BoolToBorderBrush}}">
+                        <TextBlock Text="Light"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontFamily="{StaticResource UIFont}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimary}" />
+                    </Border>
+                </Button>
+
+                <!-- Slate card -->
+                <Button Classes="theme-card-btn"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Padding="0"
+                        Cursor="Hand"
+                        Command="{Binding SelectSlateCommand}">
+                    <Border Width="120"
+                            Height="64"
+                            Classes="theme-card"
+                            CornerRadius="6"
+                            BorderThickness="1.5"
+                            BorderBrush="{Binding IsSlateSelected, Converter={StaticResource BoolToBorderBrush}}">
+                        <TextBlock Text="Slate"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontFamily="{StaticResource UIFont}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimary}" />
+                    </Border>
+                </Button>
+
+                <!-- Pink card -->
+                <Button Classes="theme-card-btn"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Padding="0"
+                        Cursor="Hand"
+                        Command="{Binding SelectPinkCommand}">
+                    <Border Width="120"
+                            Height="64"
+                            Classes="theme-card"
+                            CornerRadius="6"
+                            BorderThickness="1.5"
+                            BorderBrush="{Binding IsPinkSelected, Converter={StaticResource BoolToBorderBrush}}">
+                        <TextBlock Text="Pink"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontFamily="{StaticResource UIFont}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimary}" />
+                    </Border>
+                </Button>
+
+                <!-- Custom card -->
+                <Button Classes="theme-card-btn"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Padding="0"
+                        Cursor="Hand"
+                        Command="{Binding SelectCustomCommand}">
+                    <Border Width="120"
+                            Height="64"
+                            Classes="theme-card"
+                            CornerRadius="6"
+                            BorderThickness="1.5"
+                            BorderBrush="{Binding IsCustomSelected, Converter={StaticResource BoolToBorderBrush}}">
+                        <StackPanel HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Spacing="6">
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        Spacing="3">
+                                <Border Width="10" Height="10" CornerRadius="2"
+                                        Background="{Binding BackgroundSwatch}"
+                                        BorderBrush="{StaticResource Border}"
+                                        BorderThickness="1" />
+                                <Border Width="10" Height="10" CornerRadius="2"
+                                        Background="{Binding SurfaceSwatch}"
+                                        BorderBrush="{StaticResource Border}"
+                                        BorderThickness="1" />
+                                <Border Width="10" Height="10" CornerRadius="2"
+                                        Background="{Binding AccentSwatch}"
+                                        BorderBrush="{StaticResource Border}"
+                                        BorderThickness="1" />
+                                <Border Width="10" Height="10" CornerRadius="2"
+                                        Background="{Binding TextPrimarySwatch}"
+                                        BorderBrush="{StaticResource Border}"
+                                        BorderThickness="1" />
+                            </StackPanel>
+                            <TextBlock Text="Custom"
+                                       HorizontalAlignment="Center"
+                                       FontFamily="{StaticResource UIFont}"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource TextPrimary}" />
+                        </StackPanel>
+                    </Border>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2"
+                    Margin="0,18,0,0"
+                    IsVisible="{Binding IsCustomSelected}">
+            <TextBlock Text="Customize colors"
+                       FontFamily="{StaticResource UIFont}"
+                       FontSize="13"
+                       FontWeight="SemiBold"
+                       Foreground="{StaticResource TextPrimary}" />
+            <TextBlock Text="Hover, pressed, and surface tints are derived automatically."
+                       FontFamily="{StaticResource UIFont}"
+                       FontSize="11"
+                       Foreground="{StaticResource TextSecondary}"
+                       Margin="0,2,0,0" />
+            <Rectangle Height="1"
+                       Fill="{StaticResource Border}"
+                       Margin="0,8,0,0" />
+
+            <Grid ColumnDefinitions="120,28,180"
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                  Margin="0,14,0,0">
+                <Grid.Styles>
+                    <Style Selector="TextBlock.color-label">
+                        <Setter Property="FontFamily" Value="{StaticResource UIFont}" />
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="Foreground" Value="{StaticResource TextSecondary}" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="0,0,0,10" />
+                    </Style>
+                    <Style Selector="Button.color-swatch-btn">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="0,0,0,10" />
+                    </Style>
+                    <Style Selector="Button.color-swatch-btn /template/ ContentPresenter">
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                    <Style Selector="Button.color-swatch-btn:pointerover /template/ ContentPresenter">
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                    <Style Selector="Button.color-swatch-btn:pressed /template/ ContentPresenter">
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                    <Style Selector="Border.color-swatch">
+                        <Setter Property="Width" Value="20" />
+                        <Setter Property="Height" Value="20" />
+                        <Setter Property="CornerRadius" Value="4" />
+                        <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+                        <Setter Property="BorderThickness" Value="1" />
+                    </Style>
+                    <Style Selector="Button.color-swatch-btn:pointerover Border.color-swatch">
+                        <Setter Property="BorderBrush" Value="{StaticResource TextSecondary}" />
+                    </Style>
+                    <Style Selector="TextBox.color-input">
+                        <Setter Property="Background" Value="{StaticResource Surface}" />
+                        <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+                        <Setter Property="CaretBrush" Value="{StaticResource TextPrimary}" />
+                        <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="CornerRadius" Value="6" />
+                        <Setter Property="FontFamily" Value="{StaticResource MonoFont}" />
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="Padding" Value="10,0" />
+                        <Setter Property="Height" Value="30" />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="0,0,0,10" />
+                    </Style>
+                </Grid.Styles>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Classes="color-label" Text="Background" />
+                <Button Grid.Row="0" Grid.Column="1" Classes="color-swatch-btn">
+                    <Border Classes="color-swatch" Background="{Binding BackgroundSwatch}" />
+                    <Button.Flyout>
+                        <Flyout Placement="Right">
+                            <ColorView Color="{Binding BackgroundColor, Mode=TwoWay}" />
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <TextBox Grid.Row="0" Grid.Column="2" Classes="color-input" Text="{Binding BackgroundHex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Classes="color-label" Text="Surface" />
+                <Button Grid.Row="1" Grid.Column="1" Classes="color-swatch-btn">
+                    <Border Classes="color-swatch" Background="{Binding SurfaceSwatch}" />
+                    <Button.Flyout>
+                        <Flyout Placement="Right">
+                            <ColorView Color="{Binding SurfaceColor, Mode=TwoWay}" />
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <TextBox Grid.Row="1" Grid.Column="2" Classes="color-input" Text="{Binding SurfaceHex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Classes="color-label" Text="Border" />
+                <Button Grid.Row="2" Grid.Column="1" Classes="color-swatch-btn">
+                    <Border Classes="color-swatch" Background="{Binding BorderSwatch}" />
+                    <Button.Flyout>
+                        <Flyout Placement="Right">
+                            <ColorView Color="{Binding BorderColor, Mode=TwoWay}" />
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <TextBox Grid.Row="2" Grid.Column="2" Classes="color-input" Text="{Binding BorderHex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Classes="color-label" Text="Accent" />
+                <Button Grid.Row="3" Grid.Column="1" Classes="color-swatch-btn">
+                    <Border Classes="color-swatch" Background="{Binding AccentSwatch}" />
+                    <Button.Flyout>
+                        <Flyout Placement="Right">
+                            <ColorView Color="{Binding AccentColor, Mode=TwoWay}" />
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <TextBox Grid.Row="3" Grid.Column="2" Classes="color-input" Text="{Binding AccentHex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Grid.Row="4" Grid.Column="0" Classes="color-label" Text="Text" />
+                <Button Grid.Row="4" Grid.Column="1" Classes="color-swatch-btn">
+                    <Border Classes="color-swatch" Background="{Binding TextPrimarySwatch}" />
+                    <Button.Flyout>
+                        <Flyout Placement="Right">
+                            <ColorView Color="{Binding TextPrimaryColor, Mode=TwoWay}" />
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <TextBox Grid.Row="4" Grid.Column="2" Classes="color-input" Text="{Binding TextPrimaryHex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

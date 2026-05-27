@@ -1,0 +1,178 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Client.ViewModels"
+             x:Class="Client.Views.GeneralView"
+             x:DataType="vm:GeneralViewModel"
+             Background="{StaticResource Background}">
+    <UserControl.Styles>
+        <Style Selector="Button.general-primary">
+            <Setter Property="Background" Value="{StaticResource Accent}"/>
+            <Setter Property="Foreground" Value="{StaticResource AccentForeground}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.general-primary /template/ ContentPresenter">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.12"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.general-primary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentHover}"/>
+            <Setter Property="TextElement.Foreground" Value="{StaticResource AccentForeground}"/>
+        </Style>
+        <Style Selector="Button.general-primary:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentPressed}"/>
+        </Style>
+        <Style Selector="Button.general-secondary">
+            <Setter Property="Background" Value="{StaticResource Accent}"/>
+            <Setter Property="Foreground" Value="{StaticResource AccentForeground}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.general-secondary /template/ ContentPresenter">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.12"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.general-secondary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentHover}"/>
+            <Setter Property="TextElement.Foreground" Value="{StaticResource AccentForeground}"/>
+        </Style>
+        <Style Selector="Button.general-secondary:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentPressed}"/>
+            <Setter Property="TextElement.Foreground" Value="{StaticResource AccentForeground}"/>
+        </Style>
+        <Style Selector="ComboBox.general-select">
+            <Setter Property="Background" Value="{StaticResource Surface}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="FontFamily" Value="{StaticResource UIFont}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="ComboBox.general-select:pointerover">
+            <Setter Property="Background" Value="{StaticResource InputHoverSurface}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource InputHoverBorder}"/>
+        </Style>
+        <Style Selector="ComboBox.general-select:pointerover /template/ Border">
+            <Setter Property="Background" Value="{StaticResource InputHoverSurface}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource InputHoverBorder}"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto,Auto,*"
+          Margin="34">
+        <TextBlock Grid.Row="0"
+                   Text="General"
+                   FontFamily="{StaticResource DisplayFont}"
+                   FontSize="24"
+                   FontWeight="SemiBold"
+                   Foreground="{StaticResource TextPrimary}" />
+
+        <Grid Grid.Row="1"
+              Width="430"
+              HorizontalAlignment="Left"
+              Margin="0,20,0,0"
+              RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+              ColumnDefinitions="*,Auto">
+            <StackPanel Grid.Row="0"
+                        Grid.Column="0"
+                        Spacing="4">
+                <TextBlock Text="{Binding ActiveMacroText}"
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="12"
+                           Foreground="{StaticResource TextSecondary}" />
+                <TextBlock Text="{Binding RunStateText}"
+                           FontFamily="{StaticResource DisplayFont}"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}" />
+            </StackPanel>
+
+            <Button Grid.Row="0"
+                    Grid.Column="1"
+                    Classes="general-primary"
+                    Width="110"
+                    Height="36"
+                    Content="{Binding StartStopButtonText}"
+                    Command="{Binding ToggleMacroCommand}" />
+
+            <Rectangle Grid.Row="1"
+                       Grid.ColumnSpan="2"
+                       Height="1"
+                       Fill="{StaticResource Border}"
+                       Margin="0,16,0,16" />
+
+            <StackPanel Grid.Row="2"
+                        Grid.Column="0"
+                        Spacing="4">
+                <TextBlock Text="Hotkey"
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="12"
+                           Foreground="{StaticResource TextSecondary}" />
+                <TextBlock Text="{Binding HotkeyText}"
+                           FontFamily="{StaticResource DisplayFont}"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}" />
+            </StackPanel>
+
+            <Button Grid.Row="2"
+                    Grid.Column="1"
+                    Classes="general-secondary"
+                    Width="110"
+                    Height="36"
+                    Content="{Binding RebindButtonText}"
+                    Command="{Binding RebindHotkeyCommand}" />
+
+            <Rectangle Grid.Row="3"
+                       Grid.ColumnSpan="2"
+                       Height="1"
+                       Fill="{StaticResource Border}"
+                       Margin="0,16,0,16" />
+
+            <StackPanel Grid.Row="4"
+                        Grid.Column="0"
+                        Spacing="4">
+                <TextBlock Text="Rod Location"
+                           FontFamily="{StaticResource UIFont}"
+                           FontSize="12"
+                           Foreground="{StaticResource TextSecondary}" />
+                <TextBlock Text="{Binding SelectedRodSlot}"
+                           FontFamily="{StaticResource DisplayFont}"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}" />
+            </StackPanel>
+
+            <ComboBox Grid.Row="4"
+                      Grid.Column="1"
+                      Classes="general-select"
+                      Width="110"
+                      Height="36"
+                      ItemsSource="{Binding RodSlots}"
+                      SelectedItem="{Binding SelectedRodSlot}">
+                <ComboBox.SelectionBoxItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="Change" />
+                    </DataTemplate>
+                </ComboBox.SelectionBoxItemTemplate>
+            </ComboBox>
+        </Grid>
+    </Grid>
+</UserControl>
