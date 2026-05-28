@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ethan\\source\\repos\\Gamething\\OpenMacro-Client\\soruce\\Client.csproj": {}
+    "C:\\Users\\ethan\\source\\repos\\Gamething\\OpenMacro-Client\\source no security\\Client.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ethan\\source\\repos\\Gamething\\OpenMacro-Client\\soruce\\Client.csproj": {
+    "C:\\Users\\ethan\\source\\repos\\Gamething\\OpenMacro-Client\\source no security\\Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ethan\\source\\repos\\Gamething\\OpenMacro-Client\\soruce\\Client.csproj",
+        "projectUniqueName": "C:\\Users\\ethan\\source\\repos\\Gamething\\OpenMacro-Client\\source no security\\Client.csproj",
         "projectName": "Client",
-        "projectPath": "C:\\Users\\ethan\\source\\repos\\Gamething\\OpenMacro-Client\\soruce\\Client.csproj",
+        "projectPath": "C:\\Users\\ethan\\source\\repos\\Gamething\\OpenMacro-Client\\source no security\\Client.csproj",
         "packagesPath": "C:\\Users\\ethan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ethan\\source\\repos\\Gamething\\OpenMacro-Client\\soruce\\obj\\",
+        "outputPath": "C:\\Users\\ethan\\source\\repos\\Gamething\\OpenMacro-Client\\source no security\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

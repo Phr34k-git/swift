@@ -1,0 +1,103 @@
+name: Build and Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Release tag to create, for example v1.0.0
+        required: false
+      release_name:
+        description: Release title
+        required: false
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  OFFSETS_URL: https://offsets.imtheo.lol/offsets.hpp
+  PUBLISH_DIR: artifacts/publish
+  RELEASE_DIR: artifacts/release
+
+jobs:
+  build:
+    name: Build Windows release
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Resolve release metadata
+        shell: pwsh
+        run: |
+          if ("${{ github.event_name }}" -eq "workflow_dispatch" -and "${{ inputs.release_tag }}" -ne "") {
+            "RELEASE_TAG=${{ inputs.release_tag }}" | Out-File -FilePath $env:GITHUB_ENV -Append
+          } elseif ("${{ github.ref_type }}" -eq "tag") {
+            "RELEASE_TAG=${{ github.ref_name }}" | Out-File -FilePath $env:GITHUB_ENV -Append
+          } else {
+            "RELEASE_TAG=swift-$($env:GITHUB_RUN_NUMBER)" | Out-File -FilePath $env:GITHUB_ENV -Append
+          }
+
+          if ("${{ github.event_name }}" -eq "workflow_dispatch" -and "${{ inputs.release_name }}" -ne "") {
+            "RELEASE_NAME=${{ inputs.release_name }}" | Out-File -FilePath $env:GITHUB_ENV -Append
+          } else {
+            "RELEASE_NAME=Swift $((Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm UTC'))" | Out-File -FilePath $env:GITHUB_ENV -Append
+          }
+
+      - name: Fetch latest offsets
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri $env:OFFSETS_URL -OutFile offsets.hpp
+          if (!(Test-Path offsets.hpp) -or (Get-Item offsets.hpp).Length -eq 0) {
+            throw "Downloaded offsets.hpp is missing or empty."
+          }
+
+      - name: Restore
+        run: dotnet restore OpenMacro-Client.sln
+
+      - name: Test
+        run: dotnet test OpenMacro-Client.sln --configuration Release --no-restore
+
+      - name: Publish client
+        run: >
+          dotnet publish Client.csproj
+          --configuration Release
+          --runtime win-x64
+          --self-contained true
+          --output $env:PUBLISH_DIR
+          -p:PublishSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true
+
+      - name: Package release
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path $env:RELEASE_DIR | Out-Null
+          Copy-Item offsets.hpp -Destination (Join-Path $env:PUBLISH_DIR "offsets.hpp") -Force
+          Compress-Archive -Path (Join-Path $env:PUBLISH_DIR "*") -DestinationPath (Join-Path $env:RELEASE_DIR "Swift-win-x64.zip") -Force
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Swift-win-x64
+          path: artifacts/release/Swift-win-x64.zip
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          name: ${{ env.RELEASE_NAME }}
+          target_commitish: ${{ github.sha }}
+          files: artifacts/release/Swift-win-x64.zip
+          generate_release_notes: true

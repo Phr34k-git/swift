@@ -1,1 +1,61 @@
-# Let people see everything.
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# JetBrains Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Logs / temp
+*.log
+*.tmp
+artifacts/
+OpenMacro-Xternal-0.0.9/
+*.exe
+
+# AI / Ruflo / Claude
+.ruflo/
+.claude/
+.claude-*/
+CLAUDE.md
+AGENTS.md
+GEMINI.md
+.cursor/
+.cursorrules
+.aider*
+.copilot/
+.github/copilot-*
+MEMORY.md
+.mcp.json
+
+# Local databases / caches
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.lscache
+*.cache
+.cache/
+cache/
+*.rdb
+*.dump
+ruvector.db
+
+# bugs (local blog)
+bugs/
+*ControllerRef

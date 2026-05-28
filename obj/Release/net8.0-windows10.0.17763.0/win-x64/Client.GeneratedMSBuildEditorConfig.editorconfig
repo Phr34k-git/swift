@@ -21,7 +21,7 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Client
-build_property.ProjectDir = C:\Users\ethan\source\repos\Gamething\OpenMacro-Client\soruce\
+build_property.ProjectDir = C:\Users\ethan\source\repos\Gamething\OpenMacro-Client\source no security\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTAotOptimizerEnabled = true
@@ -35,68 +35,68 @@ build_property.CsWinRTUseWindowsUIXamlProjections = false
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/App.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/MainWindow.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Account/AccountView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Account/AccountView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Account/LoginView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Account/LoginView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/AutoTotemView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/AutoTotemView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Compact/CompactView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Compact/CompactView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Dashboard/DashboardView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Dashboard/DashboardView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Fishing/Angler/AutoAnglerView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Fishing/Angler/AutoAnglerView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Fishing/Appraise/AppraiseView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Fishing/Appraise/AppraiseView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Fishing/Appraise/TreasureAppraiseView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Fishing/Appraise/TreasureAppraiseView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Fishing/AutoSovereignRechargeView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Fishing/AutoSovereignRechargeView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Fishing/Enchant/EnchantView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Fishing/Enchant/EnchantView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Fishing/FishingAddonsView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Fishing/FishingAddonsView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Fishing/FishingView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Fishing/FishingView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Fishing/GeneralView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Fishing/GeneralView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Fishing/HuntDetectView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Fishing/HuntDetectView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Fishing/OtherAutomationView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Fishing/OtherAutomationView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Settings/SettingsClientView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Settings/SettingsClientView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Settings/SettingsView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Settings/SettingsView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Shared/BlankView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Shared/BlankView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Shared/LockedOutView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Shared/LockedOutView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/soruce/Views/Shell/ShellView.axaml]
+[C:/Users/ethan/source/repos/Gamething/OpenMacro-Client/source no security/Views/Shell/ShellView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
